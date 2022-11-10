@@ -1,2 +1,2 @@
 cd ~/nextapp
-yarn start
+pm2 start yarn -- start

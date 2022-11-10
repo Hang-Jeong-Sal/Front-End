@@ -11,5 +11,7 @@ permissions:
     group: ubuntu
     mode: 755
 Hooks:
+  ApplicationStop:
+    - location: scripts/stop_server.sh
   AfterInstll:
     - location: scripts/start_server.sh
