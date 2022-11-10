@@ -1,2 +1,2 @@
-yarn install
-yarn dev
+cd ~/nextapp
+yarn start
