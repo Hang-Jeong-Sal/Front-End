@@ -9,4 +9,7 @@ permissions:
   - object: /home/ubuntu/nextapp/
     owner: ubuntu
     group: ubuntu
-    mode : 755
+    mode: 755
+Hooks:
+  AfterInstll:
+    - location: scripts/start_server.sh
