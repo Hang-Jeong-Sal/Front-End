@@ -1,0 +1,17 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ubuntu/nextapp
+    overwrite: yes
+
+permissions:
+  - object: /home/ubuntu/nextapp
+    owner: ubuntu
+    group: ubuntu
+    mode : 755
+hooks:
+  AfterInstall:
+    - location: scripts/after-deploy.sh
+      timeout: 180
+      runas: ubuntu
