@@ -1,0 +1,87 @@
+name: PR_PREVIEW_CHECK
+
+on:
+  pull_request:
+    branches: [main]
+
+env:
+  CODE_DEPLOY_APPLICATION_NAME: HangJeongSal-Preview
+  CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: HangJeongSal-Preview
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build next app
+        run: yarn build
+
+      - name: Comment Build Success
+        if: ${{ success() }}
+        uses: thollander/actions-comment-pull-request@v1
+        with:
+          message: |
+            ## ✅ Build Success
+            - Next.js 빌드에 성공하였습니다!
+          reactions: laugh
+      
+      - name: Comment Build Failure
+        if: ${{ failure() }}
+        uses: thollander/actions-comment-pull-request@v1
+        with:
+          message: |
+            ## ❌ Build Failure
+            - Next.js 빌드에 실패하였습니다
+          reactions: confused
+
+      - name: Make zip file
+        run: zip -qq -r ./$GITHUB_SHA.zip . -x "node_modules/*"
+        shell: bash
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
+
+      - name: Upload to S3
+        run: aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://${{secrets.S3_BUCKET_NAME}}/$GITHUB_SHA.zip
+
+      - name: Code Deploy
+        run: |
+          aws deploy create-deployment \
+          --deployment-config-name CodeDeployDefault.AllAtOnce \
+          --application-name ${{ env.CODE_DEPLOY_APPLICATION_NAME }} \
+          --deployment-group-name ${{ env.CODE_DEPLOY_DEPLOYMENT_GROUP_NAME }} \
+          --s3-location bucket=${{secrets.S3_BUCKET_NAME}},bundleType=zip,key=$GITHUB_SHA.zip
+
+      - name: Comment Pre-Deploy Success
+        if: ${{ success() }}
+        uses: thollander/actions-comment-pull-request@v1
+        with:
+          message: |
+            ## ✅ Deploy Success to Preview-Server
+            - Amazon Server 배포에 성공하였습니다.
+            - [Preview-Server](http://ec2-15-165-196-61.ap-northeast-2.compute.amazonaws.com:3000/)
+          reactions: laugh
+      
+      - name: Comment Pre-Deploy Failure
+        if: ${{ Failure() }}
+        uses: thollander/actions-comment-pull-request@v1
+        with:
+          message: |
+            ## ❌ Build Failure
+            - Next.js 빌드에 실패하였습니다
+            - Preview-Server 설정 또는 EC2 상태를 확인하세요
+            - [Preview-Server](http://ec2-15-165-196-61.ap-northeast-2.compute.amazonaws.com:3000/)
+          reactions: confused

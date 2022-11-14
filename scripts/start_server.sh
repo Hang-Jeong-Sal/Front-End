@@ -1,2 +1,2 @@
 cd ~/nextapp
-pm2 start yarn -- start
+sudo pm2 start yarn -- start

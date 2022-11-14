@@ -1,2 +1,2 @@
-pm2 stop 0
-pm2 kill
+sudo pm2 stop 0
+sudo pm2 kill
