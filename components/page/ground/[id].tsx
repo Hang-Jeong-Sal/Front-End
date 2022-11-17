@@ -7,6 +7,7 @@ const ImageSection = styled.div``;
 const ProfileSection = styled.div`
   display: flex;
   justify-content: flex-start;
+  padding: 2vw;
   align-items: center;
 
   div {
@@ -18,10 +19,12 @@ const MainSection = styled.div`
   border-top-style: solid;
   border-bottom-style: solid;
   border-color: #f4f4f4;
+  padding: 2vw;
 `;
 const MainTitle = styled.div`
   font-weight: 500;
   font-size: 20px;
+  margin-bottom: 1vw;
 `;
 const MainCategory = styled.div`
   color: #005452;
@@ -43,6 +46,17 @@ const MainTime = styled.div`
 `;
 const Line = styled.div`
   display: flex;
+  align-items: center;
+  padding: 1vw;
+`;
+const DataTag = styled.div`
+  font-weight: 600;
+  font-size: 16px;
+`;
+const Data = styled.div`
+  margin-left: 1vw;
+  font-weight: 400;
+  font-size: 16px;
 `;
 export {
   Header,
@@ -53,4 +67,6 @@ export {
   MainCategory,
   MainTime,
   Line,
+  DataTag,
+  Data,
 };
