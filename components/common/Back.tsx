@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Back = () => {
   return (
     <ImageContainer>
-      <Image src="/back.png" width={20} height={20} alt="이미지"></Image>
+      <Image src="/back.svg" width={25} height={25} alt="이미지"></Image>
     </ImageContainer>
   );
 };
