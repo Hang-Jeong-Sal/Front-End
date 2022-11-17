@@ -3,4 +3,5 @@ const Header = styled.header`
   display: flex;
   justify-content: space-between;
 `;
-export default Header;
+const ImageSection = styled.div``;
+export { Header, ImageSection };
