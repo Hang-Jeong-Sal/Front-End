@@ -18,7 +18,6 @@ const configUpdate = (region: Region, identityPoolId: string) => {
 
 export const uploadFile = async (file: File) => {
     configUpdate(seoul, AWSCognitoPoolId);
-    console.log(process.env);
     const upload = new AWS.S3.ManagedUpload({
         params: {
             Bucket: bucket,
