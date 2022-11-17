@@ -6,6 +6,7 @@ import {
   ImageSection,
   MainCategory,
   MainSection,
+  MainTime,
   MainTitle,
   ProfileSection,
 } from '../../components/page/ground/[id]';
@@ -31,6 +32,7 @@ export default function Ground() {
       <MainSection>
         <MainTitle>민지네 텃밭</MainTitle>
         <MainCategory>주말텃밭</MainCategory>
+        <MainTime>6시간 전</MainTime>
       </MainSection>
     </>
   );

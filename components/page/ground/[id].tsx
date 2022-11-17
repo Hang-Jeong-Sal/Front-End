@@ -32,7 +32,14 @@ const MainCategory = styled.div`
   letter-spacing: -0.333333px;
   text-decoration-line: underline;
 `;
-
+const MainTime = styled.div`
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: -0.333333px;
+  color: #b5b5b5;
+`;
 export {
   Header,
   ImageSection,
@@ -40,4 +47,5 @@ export {
   MainSection,
   MainTitle,
   MainCategory,
+  MainTime,
 };
