@@ -1,7 +1,6 @@
-import React from 'react';
-
-const id = () => {
-  return <div>id</div>;
-};
-
-export default id;
+import styled from 'styled-components';
+const Header = styled.header`
+  display: flex;
+  justify-content: space-between;
+`;
+export default Header;
