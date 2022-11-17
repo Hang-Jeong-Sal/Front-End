@@ -39,6 +39,10 @@ const MainTime = styled.div`
   line-height: 14px;
   letter-spacing: -0.333333px;
   color: #b5b5b5;
+  margin-left: 10px;
+`;
+const Line = styled.div`
+  display: flex;
 `;
 export {
   Header,
@@ -48,4 +52,5 @@ export {
   MainTitle,
   MainCategory,
   MainTime,
+  Line,
 };

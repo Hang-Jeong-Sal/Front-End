@@ -4,6 +4,7 @@ import Menu from '../../components/common/Menu';
 import {
   Header,
   ImageSection,
+  Line,
   MainCategory,
   MainSection,
   MainTime,
@@ -31,8 +32,10 @@ export default function Ground() {
       </ProfileSection>
       <MainSection>
         <MainTitle>민지네 텃밭</MainTitle>
-        <MainCategory>주말텃밭</MainCategory>
-        <MainTime>6시간 전</MainTime>
+        <Line>
+          <MainCategory>주말텃밭</MainCategory>
+          <MainTime>6시간 전</MainTime>
+        </Line>
       </MainSection>
     </>
   );
