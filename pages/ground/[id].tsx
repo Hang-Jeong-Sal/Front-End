@@ -4,6 +4,9 @@ import Menu from '../../components/common/Menu';
 import {
   Header,
   ImageSection,
+  MainCategory,
+  MainSection,
+  MainTitle,
   ProfileSection,
 } from '../../components/page/ground/[id]';
 import styles from '../../styles/ground.module.css';
@@ -25,6 +28,10 @@ export default function Ground() {
         ></Image>
         <div>상도동 불주먹</div>
       </ProfileSection>
+      <MainSection>
+        <MainTitle>민지네 텃밭</MainTitle>
+        <MainCategory>주말텃밭</MainCategory>
+      </MainSection>
     </>
   );
 }

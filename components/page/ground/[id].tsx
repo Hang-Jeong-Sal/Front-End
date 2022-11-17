@@ -14,4 +14,30 @@ const ProfileSection = styled.div`
     font-size: 2.5vw;
   }
 `;
-export { Header, ImageSection, ProfileSection };
+const MainSection = styled.div`
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-color: #f4f4f4;
+`;
+const MainTitle = styled.div`
+  font-weight: 500;
+  font-size: 20px;
+`;
+const MainCategory = styled.div`
+  color: #005452;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: -0.333333px;
+  text-decoration-line: underline;
+`;
+
+export {
+  Header,
+  ImageSection,
+  ProfileSection,
+  MainSection,
+  MainTitle,
+  MainCategory,
+};
