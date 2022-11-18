@@ -58,6 +58,50 @@ const Data = styled.div`
   font-weight: 400;
   font-size: 16px;
 `;
+const Introduction = styled.div`
+  border-bottom-style: solid;
+  border-color: #f4f4f4;
+  padding: 2vw;
+`;
+const IntroTitle = styled.div`
+  font-size: 16px;
+  font-weight: 600;
+`;
+const IntroText = styled.div`
+  margin-top: 2vw;
+  font-size: 16px;
+`;
+const DetailNav = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 2vw;
+  position: fixed;
+  bottom: 0px;
+`;
+const WhiteButton = styled.button`
+  width: 150px;
+  height: 50px;
+  background: #ffffff;
+  border: 1px solid #d9d9d9;
+  border-radius: 7px;
+  color: #005452;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 400;
+`;
+const GreenButton = styled.button`
+  background: #005452;
+  border-radius: 7px;
+  width: 150px;
+  height: 50px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #ffffff;
+`;
 export {
   Header,
   ImageSection,
@@ -69,4 +113,10 @@ export {
   Line,
   DataTag,
   Data,
+  Introduction,
+  IntroTitle,
+  IntroText,
+  WhiteButton,
+  DetailNav,
+  GreenButton,
 };
