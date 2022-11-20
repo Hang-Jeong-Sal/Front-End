@@ -1,8 +1,17 @@
 import Image from 'next/image';
+import { Dispatch, SetStateAction } from 'react';
 import styled from 'styled-components';
-const Back = () => {
+const Menu = ({
+  setState,
+}: {
+  setState: Dispatch<SetStateAction<boolean>>;
+}) => {
   return (
-    <ImageContainer>
+    <ImageContainer
+      onClick={() => {
+        setState((prev) => !prev);
+      }}
+    >
       <Image src="/menu.svg" width={40} height={40} alt="이미지"></Image>
     </ImageContainer>
   );
@@ -13,4 +22,4 @@ const ImageContainer = styled.div`
   align-items: center;
   justify-content: center;
 `;
-export default Back;
+export default Menu;

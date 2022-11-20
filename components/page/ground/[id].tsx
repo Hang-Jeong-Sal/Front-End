@@ -12,7 +12,7 @@ const ProfileSection = styled.div`
 
   div {
     margin-left: 2vw;
-    font-size: 2.5vw;
+    font-size: 16px;
   }
 `;
 const MainSection = styled.div`
@@ -72,12 +72,31 @@ const IntroText = styled.div`
   font-size: 16px;
 `;
 const DetailNav = styled.div`
-  width: 100%;
   display: flex;
+  max-width: 550px;
+  min-width: 100px;
+  width: 100%;
   align-items: center;
-  padding: 2vw;
   position: fixed;
   bottom: 0px;
+  border-top-style: solid;
+  border-width: 2px;
+  border-color: #f4f4f4;
+  z-index: 9999;
+  background-color: white;
+`;
+const HeartImage = styled.div`
+  height: 100;
+  padding: 30px;
+  border-right-style: solid;
+  border-width: 2px;
+  border-color: #f4f4f4;
+`;
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  padding: 2vw;
+  width: 100%;
 `;
 const WhiteButton = styled.button`
   width: 150px;
@@ -102,6 +121,19 @@ const GreenButton = styled.button`
   line-height: 19px;
   color: #ffffff;
 `;
+const ModalContainer = styled.div`
+  z-index: 10;
+  background: #ffffff;
+  border-radius: 5px;
+  position: absolute;
+  top: 40px;
+  left: 520px;
+  font-size: 20px;
+  padding: 5px;
+  div {
+    margin: 2vw;
+  }
+`;
 export {
   Header,
   ImageSection,
@@ -119,4 +151,7 @@ export {
   WhiteButton,
   DetailNav,
   GreenButton,
+  HeartImage,
+  ButtonContainer,
+  ModalContainer,
 };

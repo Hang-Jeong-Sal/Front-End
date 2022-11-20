@@ -1,12 +1,18 @@
 import Image from 'next/image';
+import { useState } from 'react';
 import Back from '../../components/common/Back';
+import Map from '../../components/common/Map';
 import Menu from '../../components/common/Menu';
+import OverlayController from '../../components/common/Overlay';
+import Overlay from '../../components/common/Overlay';
 import {
+  ButtonContainer,
   Data,
   DataTag,
   DetailNav,
   GreenButton,
   Header,
+  HeartImage,
   ImageSection,
   Introduction,
   IntroText,
@@ -16,10 +22,10 @@ import {
   MainSection,
   MainTime,
   MainTitle,
+  ModalContainer,
   ProfileSection,
   WhiteButton,
 } from '../../components/page/ground/[id]';
-import styles from '../../styles/ground.module.css';
 
 export default function Ground() {
   const dataTag = ['주소', '면적', '가격', '대여기간'];
@@ -29,11 +35,24 @@ export default function Ground() {
     '5000',
     '2022.11.15 ~ 2023.05.15',
   ];
+  const [isModal, setModal] = useState(false);
+  const [clickedHeart, setClickedHeart] = useState(false);
   return (
     <>
+      {isModal ? (
+        <>
+          <OverlayController setState={setModal}></OverlayController>
+          <ModalContainer>
+            <div>수정하기</div>
+            <div>삭제하기</div>
+            <div>예약처리하기</div>
+            <div>거래완료하기</div>
+          </ModalContainer>
+        </>
+      ) : null}
       <Header>
         <Back />
-        <Menu />
+        <Menu setState={setModal} />
       </Header>
       <ImageSection></ImageSection>
       <ProfileSection>
@@ -67,10 +86,24 @@ export default function Ground() {
           좋아요. 관심있는 분들은 약속잡기전에 채팅 먼저 부탁드려요 ^^
         </IntroText>
       </Introduction>
+      <Map longitude={126.570667} latitude={33.450701}></Map>
       <DetailNav>
-        <Image src="/heart.svg" width={30} height={30} alt="이미지"></Image>
-        <WhiteButton>채팅하기</WhiteButton>
-        <GreenButton>구매완료</GreenButton>
+        <HeartImage
+          onClick={() => {
+            setClickedHeart((prev) => !prev);
+          }}
+        >
+          <Image
+            src={clickedHeart ? '/clickedHeart.svg' : '/heart.svg'}
+            width={30}
+            height={30}
+            alt="이미지"
+          ></Image>
+        </HeartImage>
+        <ButtonContainer>
+          <WhiteButton>채팅하기</WhiteButton>
+          <GreenButton>구매완료</GreenButton>
+        </ButtonContainer>
       </DetailNav>
     </>
   );
