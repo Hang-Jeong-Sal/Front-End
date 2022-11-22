@@ -1,26 +1,18 @@
 import Image from 'next/image';
 import styled from 'styled-components';
 import { useRouter } from 'next/dist/client/router';
+import Img from './Img';
 const Back = () => {
   const router = useRouter();
   return (
-    <ImageContainer
+    <div
       onClick={() => {
         router.back();
       }}
     >
-      <Image src="/back.svg" width={25} height={25} alt="이미지"></Image>
-    </ImageContainer>
+      <Img src="/back.svg" width={3} height={3}></Img>
+    </div>
   );
 };
 
-const ImageContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  img {
-    max-width: 100%;
-  }
-`;
 export default Back;

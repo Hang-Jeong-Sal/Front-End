@@ -2,16 +2,22 @@ import styled from 'styled-components';
 const Header = styled.header`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
-const ImageSection = styled.div``;
+const ImageSection = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+`;
 const ProfileSection = styled.div`
   display: flex;
   justify-content: flex-start;
-  padding: 2vw;
+  padding: 10px;
+  padding-left: 10px;
   align-items: center;
 
   div {
-    margin-left: 2vw;
     font-size: 16px;
   }
 `;
@@ -24,7 +30,7 @@ const MainSection = styled.div`
 const MainTitle = styled.div`
   font-weight: 500;
   font-size: 20px;
-  margin-bottom: 1vw;
+  margin-bottom: 10px;
 `;
 const MainCategory = styled.div`
   color: #005452;
@@ -47,14 +53,14 @@ const MainTime = styled.div`
 const Line = styled.div`
   display: flex;
   align-items: center;
-  padding: 1vw;
+  padding: 10px;
 `;
 const DataTag = styled.div`
   font-weight: 600;
   font-size: 16px;
 `;
 const Data = styled.div`
-  margin-left: 1vw;
+  margin-left: 10px;
   font-weight: 400;
   font-size: 16px;
 `;

@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import Back from '../../components/common/Back';
+import Img from '../../components/common/Img';
 import Map from '../../components/common/Map';
 import Menu from '../../components/common/Menu';
 import OverlayController from '../../components/common/Overlay';
-import Overlay from '../../components/common/Overlay';
 import {
   ButtonContainer,
   Data,
@@ -54,14 +54,11 @@ export default function Ground() {
         <Back />
         <Menu setState={setModal} />
       </Header>
-      <ImageSection></ImageSection>
+      <ImageSection>
+        <Img src={'/detailPhoto.svg'} width={100} height={22} />
+      </ImageSection>
       <ProfileSection>
-        <Image
-          src="/profile.svg"
-          width={50}
-          height={50}
-          alt="프로필이미지"
-        ></Image>
+        <Img src="/profile.svg" width={4.5} height={4.5} />
         <div>상도동 불주먹</div>
       </ProfileSection>
       <MainSection>
@@ -94,7 +91,7 @@ export default function Ground() {
           }}
         >
           <Image
-            src={clickedHeart ? '/clickedHeart.svg' : '/heart.svg'}
+            src={clickedHeart ? '/clickedHeart.svg' : '/Heart.svg'}
             width={30}
             height={30}
             alt="이미지"
