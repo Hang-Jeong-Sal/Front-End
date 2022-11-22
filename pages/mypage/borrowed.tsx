@@ -1,3 +1,3 @@
 export default function Myground() {
-  return <></>;
+  return <>하이</>;
 }

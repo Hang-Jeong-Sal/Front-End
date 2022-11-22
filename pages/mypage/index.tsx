@@ -10,8 +10,25 @@ import {
   MyProfileSection,
   Name,
 } from '../../components/page/mypage';
+import { useRouter } from 'next/dist/client/router';
 
 export default function Mypage() {
+  const router = useRouter();
+  function handleClick(where: string) {
+    router.push(`${window.location.pathname}/${where}`);
+  }
+
+  const ImageLists = [
+    ['/borrowed.svg', '빌려준 텃밭', '/borrowed'],
+    ['/borrowing.svg', '빌린 텃밭', '/borrowing'],
+    ['/likelist.svg', '찜한 목록', '/likes'],
+  ];
+  const MypageMenu = [
+    '자주 묻는 질문',
+    '버전 정보',
+    '개인정보처리방침',
+    '로그아웃',
+  ];
   return (
     <>
       <MyProfileSection>
@@ -22,26 +39,22 @@ export default function Mypage() {
         </InterActionSpace>
         <Img src={'/modify.svg'} width={40} height={40} />
       </MyProfileSection>
+
       <ImageList>
-        {[
-          ['/borrowed.svg', '빌려준 텃밭'],
-          ['/borrowing.svg', '빌린 텃밭'],
-          ['/likelist.svg', '찜한 목록'],
-        ].map(([src, text]) => (
-          <ListContainer key={src}>
+        {ImageLists.map(([src, text, link]) => (
+          <ListContainer key={src} onClick={() => handleClick(link)}>
             <Img src={src} width={60} height={60} />
             <ListText>{text}</ListText>
           </ListContainer>
         ))}
       </ImageList>
-      {['자주 묻는 질문', '버전 정보', '개인정보처리방침', '로그아웃'].map(
-        (text) => (
-          <ButtonContainer key={text}>
-            <ButtonText>{text}</ButtonText>
-            <Img src={'/modify.svg'} width={40} height={40} />
-          </ButtonContainer>
-        )
-      )}
+
+      {MypageMenu.map((text) => (
+        <ButtonContainer key={text}>
+          <ButtonText>{text}</ButtonText>
+          <Img src={'/modify.svg'} width={40} height={40} />
+        </ButtonContainer>
+      ))}
     </>
   );
 }
