@@ -9,6 +9,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "hang-jeong-sal.s3.ap-northeast-2.amazonaws.com",
       },
+      {
+        protocol: "https",
+        hostname: "user-images.githubusercontent.com"
+      }
     ],
   },
 }
