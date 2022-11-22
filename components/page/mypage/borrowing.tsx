@@ -1,7 +1,7 @@
 import React from 'react';
 
-const myground = () => {
-  return <div>myground</div>;
+const BorrowingComponent = () => {
+  return <div>BorrowingComponent</div>;
 };
 
-export default myground;
+export default BorrowingComponent;

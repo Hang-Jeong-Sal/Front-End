@@ -1,3 +1,3 @@
-export default function Myground() {
-  return <>하이</>;
+export default function borrowed() {
+  return <div>borrowed</div>;
 }
