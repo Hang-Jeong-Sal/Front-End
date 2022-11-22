@@ -13,7 +13,7 @@ const Menu = ({
         setState((prev) => !prev);
       }}
     >
-      <Img src="/menu.svg" width={4} height={4.5}></Img>
+      <Img src="/menu.svg" width={45} height={45}></Img>
     </div>
   );
 };

@@ -55,7 +55,7 @@ export default function Ground() {
         <Menu setState={setModal} />
       </Header>
       <ImageSection>
-        <Img src={'/detailPhoto.svg'} width={100} height={22} />
+        <Img src={'/detailPhoto.svg'} width={550} height={240} />
       </ImageSection>
       <ProfileSection>
         <Img src="/profile.svg" width={4.5} height={4.5} />

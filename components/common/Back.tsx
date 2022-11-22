@@ -10,7 +10,7 @@ const Back = () => {
         router.back();
       }}
     >
-      <Img src="/back.svg" width={3} height={3}></Img>
+      <Img src="/back.svg" width={30} height={30}></Img>
     </div>
   );
 };
