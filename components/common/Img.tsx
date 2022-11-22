@@ -19,7 +19,7 @@ const ImageContainer = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  width: ${(props: IimageStyled) => props.width}vw;
-  height: ${(props: IimageStyled) => props.height}vh;
+  width: ${(props: IimageStyled) => props.width}px;
+  height: ${(props: IimageStyled) => props.height}px;
 `;
 export default Img;
