@@ -1,11 +1,12 @@
-import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components';
+import { useRecoilState } from 'recoil';
+import category from '../../../atoms/category';
 type ICategory = '전체' | '거래중' | '거래완료';
 const CategoryArray: ICategory[] = ['전체', '거래중', '거래완료'];
 
 const Category = () => {
-  const [category, setCategory] = useState<ICategory>('전체');
+  const [cate, setCate] = useRecoilState<ICategory>(category);
   return (
     <AnimatePresence>
       <Container>
@@ -13,11 +14,11 @@ const Category = () => {
           <StateName
             key={idx}
             onClick={() => {
-              setCategory(state);
+              setCate(state);
             }}
           >
             {state}
-            {category === state ? <GreenLine layoutId="line" /> : null}
+            {cate === state ? <GreenLine layoutId="line" /> : null}
           </StateName>
         ))}
       </Container>
