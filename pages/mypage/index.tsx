@@ -15,7 +15,7 @@ import { useRouter } from 'next/dist/client/router';
 export default function Mypage() {
   const router = useRouter();
   function handleClick(where: string) {
-    router.push(`${window.location.pathname}/${where}`);
+    router.push(`${window.location.pathname}${where}`);
   }
 
   const ImageLists = [
