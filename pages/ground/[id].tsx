@@ -1,3 +1,4 @@
+import { AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { useState } from 'react';
 import Back from '../../components/common/Back';
@@ -5,6 +6,7 @@ import Img from '../../components/common/Img';
 import Map from '../../components/common/Map';
 import Menu from '../../components/common/Menu';
 import OverlayController from '../../components/common/Overlay';
+import { motion } from 'framer-motion';
 import {
   ButtonContainer,
   Data,
@@ -24,6 +26,7 @@ import {
   MainTitle,
   Modal,
   ModalContainer,
+  ModalContents,
   ProfileSection,
   WhiteButton,
 } from '../../components/page/ground/[id]';
@@ -40,19 +43,49 @@ export default function Ground() {
   const [clickedHeart, setClickedHeart] = useState(false);
   return (
     <>
-      {isModal ? (
-        <>
-          <OverlayController setState={setModal}></OverlayController>
-          <ModalContainer>
-            <Modal>
-              <div>수정하기</div>
-              <div>삭제하기</div>
-              <div>예약처리하기</div>
-              <div>거래완료하기</div>
-            </Modal>
-          </ModalContainer>
-        </>
-      ) : null}
+      <AnimatePresence>
+        {isModal ? (
+          <>
+            <OverlayController setState={setModal}></OverlayController>
+            <ModalContainer>
+              <Modal
+                initial={{ height: 0 }}
+                animate={{ height: '220px' }}
+                exit={{ height: 0 }}
+              >
+                <ModalContents
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  수정하기
+                </ModalContents>
+                <ModalContents
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  삭제하기
+                </ModalContents>
+                <ModalContents
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  예약처리하기
+                </ModalContents>
+                <ModalContents
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  거래완료하기
+                </ModalContents>
+              </Modal>
+            </ModalContainer>
+          </>
+        ) : null}
+      </AnimatePresence>
       <Header>
         <Back />
         <Menu setState={setModal} />

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 const Header = styled.header`
   display: flex;
   justify-content: space-between;
@@ -127,7 +128,7 @@ const GreenButton = styled.button`
   line-height: 19px;
   color: #ffffff;
 `;
-const Modal = styled.div`
+const Modal = styled(motion.div)`
   right: 3%;
   top: 45px;
   position: absolute;
@@ -136,11 +137,12 @@ const Modal = styled.div`
   border-radius: 5px;
   font-size: 20px;
   padding: 5px;
-  div {
-    margin: 2vw;
-  }
 `;
-const ModalContainer = styled.div`
+const ModalContents = styled(motion.div)`
+  margin: 20px;
+  position: relative;
+`;
+const ModalContainer = styled(motion.div)`
   position: relative;
   display: flex;
   width: 100%;
@@ -166,4 +168,5 @@ export {
   ButtonContainer,
   ModalContainer,
   Modal,
+  ModalContents,
 };
