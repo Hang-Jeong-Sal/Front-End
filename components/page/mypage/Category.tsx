@@ -28,7 +28,9 @@ const GreenLine = styled(motion.div)`
   position: absolute;
   top: 34px;
   width: 100%;
-  border: 1.8px solid #005452;
+  z-index: 9999;
+  height: 3px;
+  background-color: #005452;
 `;
 const Container = styled.div`
   display: flex;
