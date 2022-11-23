@@ -16,10 +16,10 @@ export const ItemMaker = ({ props }: { props: GroundData }) => {
           <Img src={props.image} width={100} height={100} />
           <TextContainer>
             <Title>{props.name}</Title>
-            <p>
+            <div>
               <div>{props.location}</div>
               <div>{props.price}원</div>
-            </p>
+            </div>
           </TextContainer>
         </ImageAndText>
         <HeartAndInfo>
