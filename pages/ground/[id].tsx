@@ -24,12 +24,10 @@ import {
   MainSection,
   MainTime,
   MainTitle,
-  Modal,
-  ModalContainer,
-  ModalContents,
   ProfileSection,
   WhiteButton,
 } from '../../components/page/ground/[id]';
+import Modal from '../../components/page/ground/Modal';
 
 export default function Ground() {
   const dataTag = ['주소', '면적', '가격', '대여기간'];
@@ -47,42 +45,7 @@ export default function Ground() {
         {isModal ? (
           <>
             <OverlayController setState={setModal}></OverlayController>
-            <ModalContainer>
-              <Modal
-                initial={{ height: 0 }}
-                animate={{ height: '220px' }}
-                exit={{ height: 0 }}
-              >
-                <ModalContents
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                >
-                  수정하기
-                </ModalContents>
-                <ModalContents
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                >
-                  삭제하기
-                </ModalContents>
-                <ModalContents
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                >
-                  예약처리하기
-                </ModalContents>
-                <ModalContents
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                >
-                  거래완료하기
-                </ModalContents>
-              </Modal>
-            </ModalContainer>
+            <Modal />
           </>
         ) : null}
       </AnimatePresence>
