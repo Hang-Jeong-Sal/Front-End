@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 const Header = styled.header`
   display: flex;
   justify-content: space-between;
@@ -127,23 +128,28 @@ const GreenButton = styled.button`
   line-height: 19px;
   color: #ffffff;
 `;
-const Modal = styled.div`
-  right: 3%;
+const ModalBackGround = styled(motion.div)`
   top: 45px;
-  position: absolute;
+  flex-basis: 28%;
+  position: relative;
   z-index: 10;
   background: #ffffff;
   border-radius: 5px;
   font-size: 20px;
   padding: 5px;
-  div {
-    margin: 2vw;
-  }
 `;
-const ModalContainer = styled.div`
-  position: relative;
+const ModalStyler = styled.div`
+  flex-basis: 70%;
+`;
+const ModalContents = styled(motion.div)`
+  margin: 20px;
+`;
+const ModalContainer = styled(motion.div)`
+  position: absolute;
   display: flex;
   width: 100%;
+  max-width: 550px;
+  min-width: 100px;
 `;
 export {
   Header,
@@ -165,5 +171,7 @@ export {
   HeartImage,
   ButtonContainer,
   ModalContainer,
-  Modal,
+  ModalBackGround,
+  ModalContents,
+  ModalStyler,
 };

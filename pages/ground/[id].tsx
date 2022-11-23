@@ -1,3 +1,4 @@
+import { AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { useState } from 'react';
 import Back from '../../components/common/Back';
@@ -5,6 +6,7 @@ import Img from '../../components/common/Img';
 import Map from '../../components/common/Map';
 import Menu from '../../components/common/Menu';
 import OverlayController from '../../components/common/Overlay';
+import { motion } from 'framer-motion';
 import {
   ButtonContainer,
   Data,
@@ -22,11 +24,10 @@ import {
   MainSection,
   MainTime,
   MainTitle,
-  Modal,
-  ModalContainer,
   ProfileSection,
   WhiteButton,
 } from '../../components/page/ground/[id]';
+import Modal from '../../components/page/ground/Modal';
 
 export default function Ground() {
   const dataTag = ['주소', '면적', '가격', '대여기간'];
@@ -40,19 +41,14 @@ export default function Ground() {
   const [clickedHeart, setClickedHeart] = useState(false);
   return (
     <>
-      {isModal ? (
-        <>
-          <OverlayController setState={setModal}></OverlayController>
-          <ModalContainer>
-            <Modal>
-              <div>수정하기</div>
-              <div>삭제하기</div>
-              <div>예약처리하기</div>
-              <div>거래완료하기</div>
-            </Modal>
-          </ModalContainer>
-        </>
-      ) : null}
+      <AnimatePresence>
+        {isModal ? (
+          <>
+            <OverlayController setState={setModal}></OverlayController>
+            <Modal />
+          </>
+        ) : null}
+      </AnimatePresence>
       <Header>
         <Back />
         <Menu setState={setModal} />
