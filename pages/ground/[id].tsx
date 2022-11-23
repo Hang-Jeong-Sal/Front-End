@@ -22,6 +22,7 @@ import {
   MainSection,
   MainTime,
   MainTitle,
+  Modal,
   ModalContainer,
   ProfileSection,
   WhiteButton,
@@ -43,10 +44,12 @@ export default function Ground() {
         <>
           <OverlayController setState={setModal}></OverlayController>
           <ModalContainer>
-            <div>수정하기</div>
-            <div>삭제하기</div>
-            <div>예약처리하기</div>
-            <div>거래완료하기</div>
+            <Modal>
+              <div>수정하기</div>
+              <div>삭제하기</div>
+              <div>예약처리하기</div>
+              <div>거래완료하기</div>
+            </Modal>
           </ModalContainer>
         </>
       ) : null}

@@ -127,18 +127,23 @@ const GreenButton = styled.button`
   line-height: 19px;
   color: #ffffff;
 `;
-const ModalContainer = styled.div`
+const Modal = styled.div`
+  right: 3%;
+  top: 45px;
+  position: absolute;
   z-index: 10;
   background: #ffffff;
   border-radius: 5px;
-  position: absolute;
-  top: 40px;
-  left: 520px;
   font-size: 20px;
   padding: 5px;
   div {
     margin: 2vw;
   }
+`;
+const ModalContainer = styled.div`
+  position: relative;
+  display: flex;
+  width: 100%;
 `;
 export {
   Header,
@@ -160,4 +165,5 @@ export {
   HeartImage,
   ButtonContainer,
   ModalContainer,
+  Modal,
 };
