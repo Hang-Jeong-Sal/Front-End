@@ -1,6 +1,4 @@
-import Image from 'next/image';
 import { Dispatch, SetStateAction } from 'react';
-import styled from 'styled-components';
 import Img from './Img';
 const Menu = ({
   setState,

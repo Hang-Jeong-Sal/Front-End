@@ -1,4 +1,4 @@
-import { GroundData } from '../../../pages';
+import { GroundData } from '../../../lib/interface/GroundData';
 import Img from '../../common/Img';
 import {
   Container,

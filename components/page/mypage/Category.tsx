@@ -2,15 +2,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
 import category from '../../../atoms/category';
-type ICategory = '전체' | '거래중' | '거래완료';
-const CategoryArray: ICategory[] = ['전체', '거래중', '거래완료'];
+import { TCategory } from '../../../lib/type/TCategory';
+
+const CategoryArray: TCategory[] = ['전체', '거래중', '거래완료'];
 
 const Category = () => {
-  const [cate, setCate] = useRecoilState<ICategory>(category);
+  const [cate, setCate] = useRecoilState<TCategory>(category);
   return (
     <AnimatePresence>
       <Container>
-        {CategoryArray.map((state: ICategory, idx: number) => (
+        {CategoryArray.map((state: TCategory, idx: number) => (
           <StateName
             key={idx}
             onClick={() => {
