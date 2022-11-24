@@ -33,7 +33,7 @@ export const LikeItems = ({ props }: { props: LikeItemData }) => {
           <TextContainer>
             <Title>{props.name}</Title>
             <p>
-              <div>{props.location}</div>
+              <div>{props.address}</div>
               <div>{props.price}원</div>
             </p>
           </TextContainer>

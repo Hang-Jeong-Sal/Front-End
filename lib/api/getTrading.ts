@@ -7,7 +7,7 @@ export async function getTrading(): Promise<Ires> {
         data: [
           {
             name: '민지네 텃밭',
-            location: '서울특별시 동작구',
+            address: '서울특별시 동작구',
             price: 10000,
             like_count: 3,
             image:
@@ -15,7 +15,7 @@ export async function getTrading(): Promise<Ires> {
           },
           {
             name: '중앙농장',
-            location: '서울특별시 동작구',
+            address: '서울특별시 동작구',
             price: 10000,
             like_count: 15,
             image:
