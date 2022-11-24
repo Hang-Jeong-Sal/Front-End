@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { Header } from '../../components/page/mypage/Header';
 import { useQuery } from 'react-query';
+import { Header } from '../../components/page/mypage/Header';
 import { LikeItems } from '../../components/page/mypage/likes';
 import { LikeItemData } from '../../lib/interface/LikeItemData';
 
