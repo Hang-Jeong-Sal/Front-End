@@ -9,7 +9,14 @@ import {
   NameSection,
   ProfileSection,
 } from '../../../components/page/profile/[id]';
+import { useEffect } from 'react';
 const Profile = () => {
+  let path;
+  useEffect(() => {
+    path = window.location.pathname;
+  }, []);
+  const Menu = ['판매상품', '리뷰'];
+  const URL = [`${path}/grounds`, undefined];
   return (
     <>
       <Header title={'프로필'} />
@@ -24,8 +31,8 @@ const Profile = () => {
         <GreenButton>채팅하기</GreenButton>
       </ProfileSection>
       <MenuSection>
-        {['판매상품', '리뷰'].map((menu) => (
-          <MenuButtonList text={menu} key={menu} />
+        {Menu.map((menu, idx) => (
+          <MenuButtonList text={menu} key={menu} url={URL[idx]} />
         ))}
       </MenuSection>
     </>
