@@ -1,8 +1,5 @@
-import { GroundData } from '../../lib/interface/GroundData';
+import { Ires } from '../../lib/interface/Ires';
 
-interface Ires {
-  data: GroundData[];
-}
 export async function getBorrowedTrading(): Promise<Ires> {
   return await new Promise((resolve) => {
     return setTimeout(() => {
