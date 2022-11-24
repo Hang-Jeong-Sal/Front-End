@@ -12,7 +12,6 @@ import {
   Data,
   DataTag,
   DetailNav,
-  GreenButton,
   Header,
   HeartImage,
   ImageSection,
@@ -25,9 +24,9 @@ import {
   MainTime,
   MainTitle,
   ProfileSection,
-  WhiteButton,
 } from '../../components/page/ground/[id]';
 import Modal from '../../components/page/ground/Modal';
+import { GreenButton, WhiteButton } from '../../components/common/CommonStyler';
 
 export default function Ground() {
   const dataTag = ['주소', '면적', '가격', '대여기간'];
