@@ -11,7 +11,7 @@ export interface GroundData {
 export interface GroundDetailData {
   userId: number,
   name: string,
-  image: string[],
+  images: string[],
   category: string[],
   convenient: GroundConvenient[],
   area: number,

@@ -44,7 +44,7 @@ export default function Upload() {
     userId: 0,
     name: "",
     category: [],
-    image: [],
+    images: [],
     convenient: [],
     area: 0,
     address: "",
@@ -65,7 +65,7 @@ export default function Upload() {
       for (let i = 0; i < e.target.files.length; i++) {
         uploadFile(e.target.files.item(i)!)
           .then((res) => {
-            setUserInput((prev) => prev = { ...userInput, image: [...userInput.image, res.Location] });
+            setUserInput((prev) => prev = { ...userInput, images: [...userInput.images, res.Location] });
           })
           .catch((err) => {
             alert(err);
@@ -90,7 +90,7 @@ export default function Upload() {
 
         <HorizontalContentContainer style={{ width: "calc(100vw - 48px)", overflow: "visible", paddingTop: "24px", flexWrap: "wrap" }}>
           {
-            userInput.image.map((url, idx) => {
+            userInput.images.map((url, idx) => {
               return (
                 <Img
                   width={80}
@@ -124,7 +124,7 @@ export default function Upload() {
               }}
               ref={uploadRef}
               onChange={uploadFilesOnChange} />
-            {`${userInput.image.length}/10`}
+            {`${userInput.images.length}/10`}
           </ImageUploadButton>
         </HorizontalContentContainer>
 
