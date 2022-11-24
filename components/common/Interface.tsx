@@ -1,17 +1,24 @@
 import styled from 'styled-components';
 
 export const HorizontalContainer = styled.div`
-    width: 100vw;
-    height: 6.25vh;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const HorizontalContentContainer = styled(HorizontalContainer)`
+  height: fit-content;
 `;
 
 export const VerticalContainer = styled.div`
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  height: 100vh;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const VerticalScrollable = styled(VerticalContainer)`
