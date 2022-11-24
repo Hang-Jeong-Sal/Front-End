@@ -12,7 +12,7 @@ export interface GroundDetailData {
   userId: number,
   name: string,
   images: string[],
-  category: string[],
+  categories: string[],
   convenient: GroundConvenient[],
   area: number,
   period: {

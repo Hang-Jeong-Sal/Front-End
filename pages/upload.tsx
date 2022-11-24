@@ -43,7 +43,7 @@ export default function Upload() {
   const [userInput, setUserInput] = useState<GroundDetailData>({
     userId: 0,
     name: "",
-    category: [],
+    categories: [],
     images: [],
     convenient: [],
     area: 0,
@@ -151,7 +151,7 @@ export default function Upload() {
               return (
                 <Button
                   key={idx}
-                  variant={userInput.category.includes(option) ? "contained" : "outlined"}
+                  variant={userInput.categories.includes(option) ? "contained" : "outlined"}
                   sx={{
                     margin: "0 10px 12px 0",
                     boxShadow: "0px 1px 4px #DADADA",
@@ -159,12 +159,12 @@ export default function Upload() {
                     borderRadius: "15px"
                   }}
                   onClick={() => {
-                    if (userInput.category.includes(option)) {
-                      const idx = userInput.category.indexOf(option);
-                      setUserInput({ ...userInput, category: [...getSplicedArray(userInput.category, idx, 1)] });
+                    if (userInput.categories.includes(option)) {
+                      const idx = userInput.categories.indexOf(option);
+                      setUserInput({ ...userInput, categories: [...getSplicedArray(userInput.categories, idx, 1)] });
                     }
                     else
-                      setUserInput({ ...userInput, category: [...userInput.category, option] })
+                      setUserInput({ ...userInput, categories: [...userInput.categories, option] })
                   }}
                 >
                   {GroundCategory_ko[option]}
