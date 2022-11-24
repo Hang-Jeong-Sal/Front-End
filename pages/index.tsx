@@ -18,30 +18,13 @@ import Menu, {
   MenuListItemText,
 } from '@material/react-menu';
 
-import {
-  VerticalContainer,
-  VerticalScrollable,
-} from '../components/common/Interface';
-import { GroundItem } from '../components/page/home';
-import { Ground } from '../lib/type/ground';
-import { GroundData } from '../lib/interface/GroundData';
+import { GroundData } from "../lib/interface/GroundData";
+import { VerticalContainer, VerticalScrollable } from "../components/common/Interface";
+import { GroundItem } from "../components/page/home";
 
-const groundTypes: Ground[] = [
-  'spare',
-  'weekly',
-  'rooftop',
-  'school',
-  'terrace',
-];
-const groundTypeName: { [K in Ground]: string } = {
-  spare: '자투리 텃밭',
-  weekly: '주말 농장',
-  rooftop: '옥상 정원',
-  school: '스쿨팜',
-  terrace: '베란다 텃밭',
+const handleSelectChange = (index: number, target: Element) => {
+
 };
-
-const handleSelectChange = (index: number, target: Element) => {};
 
 export default function Home() {
   const [filterOptions, setFilterOptions] = useState({
@@ -57,8 +40,7 @@ export default function Home() {
   const [groundData, setGroundData] = useState<GroundData[]>([]);
 
   useEffect(() => {
-    axios
-      .get('/data/ground.json')
+    axios.get("/data/ground.json")
       .then((res) => setGroundData(res.data as GroundData[]));
   }, []);
 
@@ -176,12 +158,14 @@ export default function Home() {
             paddingTop: '14vh',
           }}
         >
-          {groundData?.map((ground, idx) => {
-            return <GroundItem props={ground} key={idx} />;
-          })}
-        </VerticalScrollable>
+          {
+            groundData?.map((ground, idx) => {
+              return <GroundItem props={ground} key={idx} />;
+            })
+          }
+        </VerticalScrollable >
         <TopAppBarFixedAdjust />
-      </VerticalContainer>
+      </VerticalContainer >
     </>
   );
 }
