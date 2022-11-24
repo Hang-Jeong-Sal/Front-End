@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useQuery } from 'react-query';
 import { useRecoilState } from 'recoil';
 import { useEffect } from 'react';
