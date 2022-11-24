@@ -56,7 +56,7 @@ export default function Ground() {
         <Img src={'/detailPhoto.svg'} width={550} height={240} />
       </ImageSection>
       <ProfileSection>
-        <Img src="/profile.svg" width={4.5} height={4.5} />
+        <Img src="/profile.svg" width={45} height={45} />
         <div>상도동 불주먹</div>
       </ProfileSection>
       <MainSection>

@@ -44,7 +44,7 @@ export const GroundItem = ({ props }: { props: GroundData }) => {
           <div
             style={{ fontWeight: '600', fontSize: '10px', color: '#878B93' }}
           >
-            {props.location}
+            {props.address}
           </div>
           <div
             style={{ fontWeight: '600', fontSize: '10px', color: '#878B93' }}

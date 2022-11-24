@@ -20,6 +20,7 @@ const ProfileSection = styled.div`
 
   div {
     font-size: 16px;
+    padding-left: 10px;
   }
 `;
 const MainSection = styled.div`

@@ -26,7 +26,7 @@ export const ItemMaker = ({ props }: { props: GroundData }) => {
           <TextContainer>
             <Title>{props.name}</Title>
             <div>
-              <div>{props.location}</div>
+              <div>{props.address}</div>
               <div>{props.price}원</div>
             </div>
           </TextContainer>

@@ -7,7 +7,7 @@ export async function getEntire(): Promise<Ires> {
         data: [
           {
             name: '민지네 텃밭',
-            location: '서울특별시 동작구',
+            address: '서울특별시 동작구',
             price: 10000,
             like_count: 3,
             image:
@@ -15,7 +15,7 @@ export async function getEntire(): Promise<Ires> {
           },
           {
             name: '중앙농장',
-            location: '서울특별시 동작구',
+            address: '서울특별시 동작구',
             price: 10000,
             like_count: 15,
             image:
@@ -23,7 +23,7 @@ export async function getEntire(): Promise<Ires> {
           },
           {
             name: '의제네 텃밭',
-            location: '서울특별시 동작구',
+            address: '서울특별시 동작구',
             price: 10000,
             like_count: 3,
             image:
@@ -31,7 +31,7 @@ export async function getEntire(): Promise<Ires> {
           },
           {
             name: '서울농장',
-            location: '부산광역시 중구',
+            address: '부산광역시 중구',
             price: 10000,
             like_count: 15,
             image:
