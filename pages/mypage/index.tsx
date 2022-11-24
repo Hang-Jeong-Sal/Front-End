@@ -11,6 +11,7 @@ import {
   Name,
 } from '../../components/page/mypage';
 import { useRouter } from 'next/dist/client/router';
+import { MenuButtonList } from '../../components/common/MenuButtonList';
 
 export default function Mypage() {
   const router = useRouter();
@@ -50,10 +51,7 @@ export default function Mypage() {
       </ImageList>
 
       {MypageMenu.map((text) => (
-        <ButtonContainer key={text}>
-          <ButtonText>{text}</ButtonText>
-          <Img src={'/modify.svg'} width={40} height={40} />
-        </ButtonContainer>
+        <MenuButtonList text={text} key={text} />
       ))}
     </>
   );
