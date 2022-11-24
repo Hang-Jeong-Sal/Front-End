@@ -5,11 +5,7 @@ declare global {
 }
 import styled from 'styled-components';
 import { useEffect } from 'react';
-
-interface MapProps {
-  latitude: number;
-  longitude: number;
-}
+import { MapProps } from '../../lib/interface/MapProps';
 
 function Map({ latitude, longitude }: MapProps) {
   useEffect(() => {

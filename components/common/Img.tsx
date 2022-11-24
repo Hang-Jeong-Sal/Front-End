@@ -1,12 +1,8 @@
 import Image from 'next/image';
 import styled from 'styled-components';
-interface IimageStyled {
-  width: number;
-  height: number;
-}
-interface Iimage extends IimageStyled {
-  src: string;
-}
+import { Iimage } from '../../lib/interface/Iimage';
+import { IimageStyled } from '../../lib/interface/IimageStyled';
+
 const Img = ({ width, height, src }: Iimage) => {
   return (
     <ImageContainer width={width} height={height}>

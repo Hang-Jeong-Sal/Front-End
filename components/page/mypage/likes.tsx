@@ -1,8 +1,6 @@
-import styled from 'styled-components';
-import { LikeItemData } from '../../../pages/mypage/likes';
 import Img from '../../common/Img';
 import { useState } from 'react';
-
+import { LikeItemData } from '../../../lib/interface/LikeItemData';
 import {
   Container,
   ImageAndText,
