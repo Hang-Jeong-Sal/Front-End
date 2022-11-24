@@ -10,16 +10,25 @@ import {
   Title,
   TextContainer,
 } from './ItemStyle';
+import { useRouter } from 'next/router';
 
 export const LikeItems = ({ props }: { props: LikeItemData }) => {
   const [like, setLike] = useState(true);
+  const router = useRouter();
+  function routerHandler(id: number) {
+    router.push(`/ground/${id}`);
+  }
   const clickHandler = () => {
     setLike((prev) => !prev);
   };
   return (
     <>
       <Container>
-        <ImageAndText>
+        <ImageAndText
+          onClick={() => {
+            routerHandler(props.id);
+          }}
+        >
           <Img src={props.image} width={100} height={100} />
           <TextContainer>
             <Title>{props.name}</Title>

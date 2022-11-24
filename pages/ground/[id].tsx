@@ -6,7 +6,7 @@ import Img from '../../components/common/Img';
 import Map from '../../components/common/Map';
 import Menu from '../../components/common/Menu';
 import OverlayController from '../../components/common/Overlay';
-import { motion } from 'framer-motion';
+
 import {
   ButtonContainer,
   Data,
