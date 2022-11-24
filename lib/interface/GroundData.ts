@@ -4,4 +4,5 @@ export interface GroundData {
   price: number;
   like_count: number;
   image: string;
+  id: number;
 }

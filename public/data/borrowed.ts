@@ -1,8 +1,5 @@
-import { GroundData } from '../../lib/interface/GroundData';
+import { Ires } from '../../lib/interface/Ires';
 
-interface Ires {
-  data: GroundData[];
-}
 export async function getBorrowedTrading(): Promise<Ires> {
   return await new Promise((resolve) => {
     return setTimeout(() => {
@@ -25,7 +22,7 @@ export async function getBorrowedTrading(): Promise<Ires> {
               'https://user-images.githubusercontent.com/12531340/203138498-ad33f399-9f58-4267-99ab-b080e80b643a.png',
           },
         ],
-      };
+      } as Ires;
       resolve(result);
     }, 2000);
   });
@@ -52,7 +49,7 @@ export async function getBorrowedComplete(): Promise<Ires> {
               'https://user-images.githubusercontent.com/12531340/203138498-ad33f399-9f58-4267-99ab-b080e80b643a.png',
           },
         ],
-      };
+      } as Ires;
       resolve(result);
     }, 2000);
   });
@@ -95,7 +92,7 @@ export async function getBorrowedEntire(): Promise<Ires> {
               'https://user-images.githubusercontent.com/12531340/203138498-ad33f399-9f58-4267-99ab-b080e80b643a.png',
           },
         ],
-      };
+      } as Ires;
       resolve(result);
     }, 2000);
   });
