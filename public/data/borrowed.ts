@@ -1,4 +1,5 @@
-import { GroundData } from '../../pages';
+import { GroundData } from '../../lib/interface/GroundData';
+
 interface Ires {
   data: GroundData[];
 }
