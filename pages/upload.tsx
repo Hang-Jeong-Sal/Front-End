@@ -3,7 +3,7 @@ import { ChangeEvent } from 'react';
 
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from '../lib/color';
-import MaterialIcon from '@material/react-material-icon';
+import PhotoCameraOutlinedIcon from '@mui/icons-material/PhotoCameraOutlined';
 import TextField from "@mui/material/TextField";
 import InputAdornment from '@mui/material/InputAdornment';
 import Button from '@mui/material/Button';
@@ -106,12 +106,7 @@ export default function Upload() {
           }
           <ImageUploadButton onClick={() => { uploadRef!.current!.click() }}>
             <label htmlFor="file">
-              <MaterialIcon
-                aria-label={"photo_camera"}
-                hasRipple
-                icon={"photo_camera"}
-                style={{ fontSize: "4vh" }}
-              />
+              <PhotoCameraOutlinedIcon />
             </label>
             <input
               name="file"

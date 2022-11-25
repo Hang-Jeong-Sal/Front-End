@@ -8,7 +8,9 @@ export const colors = {
   surface: "#F4F4F4",
   onSurface: "rgba(165, 165, 165, 1)",
   background: "#FFFFFF",
-  onBackground: "rgba(0, 0, 0, 0.2)",
+  onBackground: "rgba(0, 0, 0, 0)",
+  onSuccess: "#005452",
+  onSystem: "rgba(249, 249, 249, 0.94)",
   error: "#FF0000"
 }
 
@@ -22,6 +24,15 @@ export const theme = createTheme({
     },
     error: {
       main: colors.error,
+    },
+    warning: {
+      main: colors.error,
+    },
+    info: {
+      main: colors.onSystem,
+    },
+    success: {
+      main: colors.onSuccess,
     },
   },
 });

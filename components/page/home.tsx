@@ -1,7 +1,10 @@
 import Image from 'next/image';
-import MaterialIcon from '@material/react-material-icon';
-import { GroundData } from '../../lib/interface/GroundData';
 import { useRouter } from 'next/router';
+
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+
+import { GroundData } from '../../lib/interface/GroundData';
+
 export const GroundItem = ({ props }: { props: GroundData }) => {
   const router = useRouter();
   function clickHandler(id: number) {
@@ -9,10 +12,6 @@ export const GroundItem = ({ props }: { props: GroundData }) => {
   }
   return (
     <>
-      <link
-        href="https://fonts.googleapis.com/icon?family=Material+Icons"
-        rel="stylesheet"
-      />
       <div
         onClick={() => {
           clickHandler(props.id);
@@ -21,7 +20,7 @@ export const GroundItem = ({ props }: { props: GroundData }) => {
           width: '100vw',
           height: '12.5vh',
           borderBottom: '2px solid #F4F4F4',
-          paddingLeft: '20px',
+          padding: '10px 0 10px 20px',
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
@@ -51,15 +50,12 @@ export const GroundItem = ({ props }: { props: GroundData }) => {
           >{`${props.price}원`}</div>
         </div>
 
-        <MaterialIcon
-          className="material-symbols-outlined"
-          aria-label={'expand_more'}
-          icon={'favorite'}
+        <FavoriteBorderOutlinedIcon
           style={{
             marginLeft: '38vw',
             marginTop: 'auto',
             marginBottom: '2vh',
-            fontSize: '3.5vw',
+            fontSize: '12px',
           }}
         />
         <div
