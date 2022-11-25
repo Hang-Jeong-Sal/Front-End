@@ -1,12 +1,12 @@
-import React from 'react';
+import React from 'react'
 import { VerticalContainer, NavigationBar } from "../../components/common/Interface";
 
-const Map = () => {
+const chat = () => {
   return (
     <VerticalContainer>
-      <NavigationBar currentFeature={"map"} style={{marginTop: "auto"}}/>
+      <NavigationBar currentFeature={"chat"} style={{ marginTop: "auto" }} />
     </VerticalContainer>
-  );
+  )
 };
 
-export default Map;
+export default chat;

@@ -12,6 +12,7 @@ import {
 } from '../../components/page/mypage';
 import { useRouter } from 'next/dist/client/router';
 import { MenuButtonList } from '../../components/common/MenuButtonList';
+import { NavigationBar, VerticalContainer } from "../../components/common/Interface";
 
 export default function Mypage() {
   const router = useRouter();
@@ -32,27 +33,31 @@ export default function Mypage() {
   ];
   return (
     <>
-      <MyProfileSection>
-        <Img src={'/mypage_profile.svg'} width={83} height={83} />
-        <InterActionSpace>
-          <Name>이서현</Name>
-          <Modify>내 정보 수정</Modify>
-        </InterActionSpace>
-        <Img src={'/modify.svg'} width={40} height={40} />
-      </MyProfileSection>
+      <VerticalContainer style={{alignItems:"normal"}}>
+        <MyProfileSection>
+          <Img src={'/mypage_profile.svg'} width={83} height={83} />
+          <InterActionSpace>
+            <Name>이서현</Name>
+            <Modify>내 정보 수정</Modify>
+          </InterActionSpace>
+          <Img src={'/modify.svg'} width={40} height={40} />
+        </MyProfileSection>
 
-      <ImageList>
-        {ImageLists.map(([src, text, link]) => (
-          <ListContainer key={src} onClick={() => handleClick(link)}>
-            <Img src={src} width={60} height={60} />
-            <ListText>{text}</ListText>
-          </ListContainer>
+        <ImageList>
+          {ImageLists.map(([src, text, link]) => (
+            <ListContainer key={src} onClick={() => handleClick(link)}>
+              <Img src={src} width={60} height={60} />
+              <ListText>{text}</ListText>
+            </ListContainer>
+          ))}
+        </ImageList>
+
+        {MypageMenu.map((text) => (
+          <MenuButtonList text={text} key={text} />
         ))}
-      </ImageList>
 
-      {MypageMenu.map((text) => (
-        <MenuButtonList text={text} key={text} />
-      ))}
+        <NavigationBar currentFeature={"mypage"} style={{ marginTop: "auto" }} />
+      </VerticalContainer>
     </>
   );
 }
