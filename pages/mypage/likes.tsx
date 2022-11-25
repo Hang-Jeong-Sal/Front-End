@@ -1,15 +1,11 @@
-import axios from 'axios';
-import { Header } from '../../components/page/mypage/Header';
 import { useQuery } from 'react-query';
+import { Header } from '../../components/page/mypage/Header';
 import { LikeItems } from '../../components/page/mypage/likes';
+import { getLikeData } from '../../lib/api/getLikeData';
 import { LikeItemData } from '../../lib/interface/LikeItemData';
 
-function getData() {
-  return axios.get('/data/ground.json').then((res) => res.data);
-}
-
 const Likes = () => {
-  const { data } = useQuery<LikeItemData[]>(['likes'], getData);
+  const { data } = useQuery<LikeItemData[]>(['likes'], getLikeData);
   return (
     <>
       <Header title={'찜한 목록'}></Header>

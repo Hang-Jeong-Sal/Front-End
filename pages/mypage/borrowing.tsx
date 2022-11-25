@@ -3,25 +3,16 @@ import { useRecoilState } from 'recoil';
 import Category from '../../components/page/mypage/Category';
 import { Header } from '../../components/page/mypage/Header';
 import { ItemMaker } from '../../components/page/mypage/ItemMaker';
-import {
-  getBorrowedTrading,
-  getBorrowedComplete,
-  getBorrowedEntire,
-} from '../../public/data/borrowed';
 import { useEffect } from 'react';
-import { ICategory } from '../../lib/type/category';
 import category from '../../atoms/category';
 import { GroundData } from '../../lib/interface/GroundData';
+import { chooseAPI } from '../../lib/api/chooseApi';
 
-function getData(cate: ICategory) {
-  if (cate == '거래중') return getBorrowedTrading().then((res) => res.data);
-  else if (cate == '거래완료')
-    return getBorrowedComplete().then((res) => res.data);
-  else return getBorrowedEntire().then((res) => res.data);
-}
 const Borrowing = () => {
   const [cate, setCate] = useRecoilState(category);
-  const { data } = useQuery<GroundData[]>(['likes', cate], () => getData(cate));
+  const { data } = useQuery<GroundData[]>(['likes', cate], () =>
+    chooseAPI(cate)
+  );
   useEffect(() => {
     setCate('전체');
   }, []);

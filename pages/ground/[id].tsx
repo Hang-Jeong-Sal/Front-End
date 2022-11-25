@@ -6,13 +6,12 @@ import Img from '../../components/common/Img';
 import Map from '../../components/common/Map';
 import Menu from '../../components/common/Menu';
 import OverlayController from '../../components/common/Overlay';
-import { motion } from 'framer-motion';
+
 import {
   ButtonContainer,
   Data,
   DataTag,
   DetailNav,
-  GreenButton,
   Header,
   HeartImage,
   ImageSection,
@@ -25,9 +24,9 @@ import {
   MainTime,
   MainTitle,
   ProfileSection,
-  WhiteButton,
 } from '../../components/page/ground/[id]';
 import Modal from '../../components/page/ground/Modal';
+import { GreenButton, WhiteButton } from '../../components/common/CommonStyler';
 
 export default function Ground() {
   const dataTag = ['주소', '면적', '가격', '대여기간'];
@@ -57,7 +56,7 @@ export default function Ground() {
         <Img src={'/detailPhoto.svg'} width={550} height={240} />
       </ImageSection>
       <ProfileSection>
-        <Img src="/profile.svg" width={4.5} height={4.5} />
+        <Img src="/profile.svg" width={45} height={45} />
         <div>상도동 불주먹</div>
       </ProfileSection>
       <MainSection>

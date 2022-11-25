@@ -1,8 +1,12 @@
 import Image from 'next/image';
 import MaterialIcon from '@material/react-material-icon';
 import { GroundData } from '../../lib/interface/GroundData';
-
+import { useRouter } from 'next/router';
 export const GroundItem = ({ props }: { props: GroundData }) => {
+  const router = useRouter();
+  function clickHandler(id: number) {
+    router.push(`/ground/${id}`);
+  }
   return (
     <>
       <link
@@ -10,6 +14,9 @@ export const GroundItem = ({ props }: { props: GroundData }) => {
         rel="stylesheet"
       />
       <div
+        onClick={() => {
+          clickHandler(props.id);
+        }}
         style={{
           width: '100vw',
           height: '12.5vh',
@@ -37,7 +44,7 @@ export const GroundItem = ({ props }: { props: GroundData }) => {
           <div
             style={{ fontWeight: '600', fontSize: '10px', color: '#878B93' }}
           >
-            {props.location}
+            {props.address}
           </div>
           <div
             style={{ fontWeight: '600', fontSize: '10px', color: '#878B93' }}

@@ -1,44 +1,44 @@
 [
-    {
-        "name" : "민지네 텃밭",
-        "location" : "서울특별시 동작구",
-        "price" : "10000",
-        "like_count" : "3",
-        "image" : "https://user-images.githubusercontent.com/12531340/203138488-ab6862b0-7ac8-4092-b154-9466726eab45.png"
-    },
-    {
-        "name" : "중앙농장",
-        "location" : "서울특별시 동작구",
-        "price" : "10000",
-        "like_count" : "15",
-        "image" : "https://user-images.githubusercontent.com/12531340/203138498-ad33f399-9f58-4267-99ab-b080e80b643a.png"
-    },
-    {
-        "name" : "민지네 텃밭",
-        "location" : "서울특별시 동작구",
-        "price" : "10000",
-        "like_count" : "1",
-        "image" : "https://user-images.githubusercontent.com/12531340/203138498-ad33f399-9f58-4267-99ab-b080e80b643a.png"
-    },
-    {
-        "name" : "중앙농장",
-        "location" : "서울특별시 동작구",
-        "price" : "10000",
-        "like_count" : "21",
-        "image" : "https://user-images.githubusercontent.com/12531340/203138503-035d224a-5433-402c-9e77-02b30ec730c4.png"
-    },
-    {
-        "name" : "민지네 텃밭",
-        "location" : "서울특별시 동작구",
-        "price" : "10000",
-        "like_count" : "5",
-        "image" : "https://user-images.githubusercontent.com/12531340/203138505-385aa092-65c8-4f55-8ce4-a49198244370.png"
-    },
-    {
-        "name" : "중앙농장",
-        "location" : "서울특별시 동작구",
-        "price" : "10000",
-        "like_count" : "5",
-        "image" : "https://user-images.githubusercontent.com/12531340/203138508-50587a28-333c-484d-b192-643429446fbb.png"
-    }
+  {
+    "name": "민지네 텃밭",
+    "address": "서울특별시 동작구",
+    "price": "10000",
+    "like_count": "3",
+    "image": "https://user-images.githubusercontent.com/12531340/203138488-ab6862b0-7ac8-4092-b154-9466726eab45.png"
+  },
+  {
+    "name": "중앙농장",
+    "address": "서울특별시 동작구",
+    "price": "10000",
+    "like_count": "15",
+    "image": "https://user-images.githubusercontent.com/12531340/203138498-ad33f399-9f58-4267-99ab-b080e80b643a.png"
+  },
+  {
+    "name": "민지네 텃밭",
+    "address": "서울특별시 동작구",
+    "price": "10000",
+    "like_count": "1",
+    "image": "https://user-images.githubusercontent.com/12531340/203138498-ad33f399-9f58-4267-99ab-b080e80b643a.png"
+  },
+  {
+    "name": "중앙농장",
+    "address": "서울특별시 동작구",
+    "price": "10000",
+    "like_count": "21",
+    "image": "https://user-images.githubusercontent.com/12531340/203138503-035d224a-5433-402c-9e77-02b30ec730c4.png"
+  },
+  {
+    "name": "민지네 텃밭",
+    "address": "서울특별시 동작구",
+    "price": "10000",
+    "like_count": "5",
+    "image": "https://user-images.githubusercontent.com/12531340/203138505-385aa092-65c8-4f55-8ce4-a49198244370.png"
+  },
+  {
+    "name": "중앙농장",
+    "address": "서울특별시 동작구",
+    "price": "10000",
+    "like_count": "5",
+    "image": "https://user-images.githubusercontent.com/12531340/203138508-50587a28-333c-484d-b192-643429446fbb.png"
+  }
 ]
