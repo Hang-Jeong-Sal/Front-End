@@ -8,29 +8,12 @@ export interface GroundData {
   image: string;
   id: number;
 }
-
-export interface GroundDetailData {
-  userId: number;
-  name: string;
-  category: string;
-  address: string;
-  area: number;
-  period: string;
-  price: number;
-  image: string;
-  introduction: string;
-  location: {
-    x: number;
-    y: number;
-  };
-}
-
 export interface GroundDetailData {
   userId: number,
   name: string,
-  images: string[],
-  categories: string[],
-  convenient: GroundConvenient[],
+  image?: string[],
+  category?: string[],
+  convenient?: GroundConvenient[],
   area: number,
   period: {
     start?: Dayjs | null,

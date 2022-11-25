@@ -1,6 +1,8 @@
 import { useState, useRef } from 'react';
 import { ChangeEvent } from 'react';
 
+import { ThemeProvider } from '@mui/material/styles';
+import { theme } from '../lib/color';
 import MaterialIcon from '@material/react-material-icon';
 import TextField from "@mui/material/TextField";
 import InputAdornment from '@mui/material/InputAdornment';
@@ -43,8 +45,8 @@ export default function Upload() {
   const [userInput, setUserInput] = useState<GroundDetailData>({
     userId: 0,
     name: "",
-    categories: [],
-    images: [],
+    category: [],
+    image: [],
     convenient: [],
     area: 0,
     address: "",
@@ -65,7 +67,7 @@ export default function Upload() {
       for (let i = 0; i < e.target.files.length; i++) {
         uploadFile(e.target.files.item(i)!)
           .then((res) => {
-            setUserInput((prev) => prev = { ...userInput, images: [...userInput.images, res.Location] });
+            setUserInput((prev) => prev = { ...userInput, image: [...userInput.image!, res.Location] });
           })
           .catch((err) => {
             alert(err);
@@ -75,7 +77,7 @@ export default function Upload() {
   };
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
       <VerticalScrollable
         style={{ padding: "0 24px 0 24px", alignItems: "normal" }}
@@ -90,7 +92,7 @@ export default function Upload() {
 
         <HorizontalContentContainer style={{ width: "calc(100vw - 48px)", overflow: "visible", paddingTop: "24px", flexWrap: "wrap" }}>
           {
-            userInput.images.map((url, idx) => {
+            userInput.image!.map((url, idx) => {
               return (
                 <Img
                   width={80}
@@ -102,13 +104,13 @@ export default function Upload() {
               );
             })
           }
-          <ImageUploadButton onClick={() => { uploadRef!.current!.click()}}>
+          <ImageUploadButton onClick={() => { uploadRef!.current!.click() }}>
             <label htmlFor="file">
               <MaterialIcon
                 aria-label={"photo_camera"}
                 hasRipple
                 icon={"photo_camera"}
-                style={{ fontSize: "4vh" }}                
+                style={{ fontSize: "4vh" }}
               />
             </label>
             <input
@@ -124,7 +126,7 @@ export default function Upload() {
               }}
               ref={uploadRef}
               onChange={uploadFilesOnChange} />
-            {`${userInput.images.length}/10`}
+            {`${userInput.image!.length}/10`}
           </ImageUploadButton>
         </HorizontalContentContainer>
 
@@ -151,7 +153,7 @@ export default function Upload() {
               return (
                 <Button
                   key={idx}
-                  variant={userInput.categories.includes(option) ? "contained" : "outlined"}
+                  variant={userInput.category!.includes(option) ? "contained" : "outlined"}
                   sx={{
                     margin: "0 10px 12px 0",
                     boxShadow: "0px 1px 4px #DADADA",
@@ -159,12 +161,12 @@ export default function Upload() {
                     borderRadius: "15px"
                   }}
                   onClick={() => {
-                    if (userInput.categories.includes(option)) {
-                      const idx = userInput.categories.indexOf(option);
-                      setUserInput({ ...userInput, categories: [...getSplicedArray(userInput.categories, idx, 1)] });
+                    if (userInput.category!.includes(option)) {
+                      const idx = userInput.category!.indexOf(option);
+                      setUserInput({ ...userInput, category: [...getSplicedArray(userInput.category!, idx, 1)] });
                     }
                     else
-                      setUserInput({ ...userInput, categories: [...userInput.categories, option] })
+                      setUserInput({ ...userInput, category: [...userInput.category!, option] })
                   }}
                 >
                   {GroundCategory_ko[option]}
@@ -250,7 +252,7 @@ export default function Upload() {
             >
               {GroundConvenients.map((convenient, idx) => (
                 <MenuItem key={idx} value={convenient}>
-                  <Checkbox checked={userInput.convenient.indexOf(convenient) > -1} />
+                  <Checkbox checked={userInput.convenient!.indexOf(convenient) > -1} />
                   <ListItemText primary={GroundConvenient_ko[convenient]} />
                 </MenuItem>
               ))}
@@ -293,15 +295,15 @@ export default function Upload() {
             sx={{
               width: "calc(100vw - 48px)"
             }}
-            onChange={(e) => {setUserInput({...userInput, introduction: e.target.value})}}
+            onChange={(e) => { setUserInput({ ...userInput, introduction: e.target.value }) }}
           />
         </HorizontalContentContainer>
 
-        <Button 
-          variant="contained" 
+        <Button
+          variant="contained"
           disableElevation
           sx={{
-            width: "calc(100vw - 48px)", 
+            width: "calc(100vw - 48px)",
             height: "60px",
             margin: "24px 0 24px 0"
           }}
@@ -309,6 +311,6 @@ export default function Upload() {
           {"확인"}
         </Button>
       </VerticalScrollable>
-    </>
+    </ThemeProvider>
   );
 }
