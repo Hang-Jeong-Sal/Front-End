@@ -10,6 +10,22 @@ body {
     'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
 }
 
+.MuiTypography-root {
+  font-family: 'Pretendard Variable';
+}
+
+.MuiButton-root {
+  font-family: 'Pretendard Variable';
+}
+
+.MuiAppBar-root {
+  box-shadow: none;
+}
+
+fieldset {
+  border: none;
+}
+
 div {
   font-family: 'Pretendard Variable';
   font-weight: 400;
