@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import { Iimage } from '../../lib/interface/Iimage';
 import { IimageStyled } from '../../lib/interface/IimageStyled';
 
-const Img = ({ width, height, src }: Iimage) => {
+const Img = ({ width, height, src, style }: Iimage) => {
   return (
-    <ImageContainer width={width} height={height}>
+    <ImageContainer width={width} height={height} style={style}>
       <Image src={src} alt={'이미지'} fill={true}></Image>
     </ImageContainer>
   );

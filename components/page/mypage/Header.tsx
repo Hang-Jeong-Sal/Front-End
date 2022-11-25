@@ -1,11 +1,12 @@
+import { CSSProperties } from 'react';
 import styled from 'styled-components';
 import Back from '../../common/Back';
-const Header = ({ title }: { title: string }) => {
+const Header = ({ title, style }: { title: string, style?: CSSProperties }) => {
   return (
     <HeaderContainer>
       <Back />
       <Title>
-        <TitleText>{title}</TitleText>
+        <TitleText style={style}>{title}</TitleText>
       </Title>
     </HeaderContainer>
   );
@@ -27,5 +28,7 @@ const TitleText = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 18px;
+  font-weight: "600"; 
 `;
 export { Header, Title, TitleText };

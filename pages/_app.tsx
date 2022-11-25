@@ -4,6 +4,8 @@ import { RecoilRoot } from 'recoil';
 import styles from '../styles/app.module.css';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { AnimatePresence, motion } from 'framer-motion';
+import "../styles/scss/App.scss";
+
 const queryClient = new QueryClient();
 export default function App({ Component, pageProps, router }: AppProps) {
   return (
