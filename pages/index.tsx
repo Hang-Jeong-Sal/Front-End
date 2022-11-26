@@ -22,29 +22,26 @@ import ImportExportSharpIcon from '@mui/icons-material/ImportExportSharp';
 import AddIcon from '@mui/icons-material/Add';
 import StorefrontOutlinedIcon from '@mui/icons-material/StorefrontOutlined';
 
-import { GroundData, GroundSearchOption, sortOptions } from "../lib/interface/GroundData";
+import {
+  GroundData, GroundSearchOption,
+  SearchOption, SearchOption_ko, DefaultGroundSearchOption,
+  SortOption, SortOption_ko
+} from "../lib/interface/GroundData";
 
-import { VerticalScrollable, NavigationBar, TwoRowAppBar } from "../components/common/Interface";
+import { VerticalScrollable, NavigationBar, TwoRowAppBar, HorizontalScrollableContentContainer } from "../components/common/Interface";
 import { SearchOptionButton } from "../components/common/MenuButtonList";
+import { SearchDrawer } from "../components/common/Menu";
 import { GroundItem } from "../components/page/home";
 
-export default function Home() {
-  const [filterOptions, setFilterOptions] = useState<GroundSearchOption>({
-    category: [],
-    area: {
-      from: 0,
-      to: 0
-    },
-    radius: 10,
-    price: {
-      from: 0,
-      to: 0
-    },
-    sort: '최신 순'
-  });
-  const [groundData, setGroundData] = useState<GroundData[]>([]);
+const searchOptions: SearchOption[] = ['category', 'radius', 'area', 'price', 'convenient', 'period'];
+const sortOptions: SortOption[] = ['ascending', 'descending', 'popular'];
 
-  const [isModal, setIsModal] = useState<boolean>(false);
+export default function Home() {
+  const [filterOptions, setFilterOptions] = useState<GroundSearchOption>(DefaultGroundSearchOption);
+  const [groundData, setGroundData] = useState<GroundData[]>([]);
+  
+  const [currentFilter, setCurrentFilter] = useState<SearchOption | null>(null);
+  const [isFABModal, setIsFABModal] = useState<boolean>(false);
   const [sortAnchorElement, setSortAnchorElement] = useState<null | HTMLElement>(null);
 
   const router = useRouter();
@@ -61,24 +58,30 @@ export default function Home() {
         <meta name="description" content="동네 근처의 텃밭을 빌려보세요. HOMI" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <ThemeProvider theme={MainTheme}>
-        <Fab size="medium" color={isModal ? "info" : "primary"} aria-label="add"
-          onClick={() => { setIsModal(!isModal) }}
-          sx={{
-            position: "absolute",
-            bottom: "64px",
-            right: "16px",
-            transition: {
-              background: "1.2s"
-            },
-            zIndex: "1301" // <Modal> is set to 1300
-          }}>
-          <Modal
-            open={isModal}
-            aria-labelledby="parent-modal-title"
-            aria-describedby="parent-modal-description"
-          >
-            <MenuItem
+      <Modal
+        open={isFABModal || currentFilter !== null}
+      >
+        <>
+          {
+            currentFilter !== null && <SearchDrawer
+              options={searchOptions}
+              currentOption={currentFilter}
+              currentFilterOptions={filterOptions}
+              onOptionClickCallback={(clickedOption) => {
+                setCurrentFilter(clickedOption);
+              }}
+              onCloseCallback={(isClose) => {
+                if (isClose)
+                  setCurrentFilter(null);
+              }}
+              onChangeFilterOptionsCallback={(changedFilterOptions) => {
+                setFilterOptions(changedFilterOptions);
+                setCurrentFilter(null); 
+              }}
+            />
+          }
+          {
+            isFABModal && <MenuItem
               sx={{
                 width: "160px",
                 height: "40px",
@@ -93,16 +96,33 @@ export default function Home() {
               <StorefrontOutlinedIcon style={{ marginRight: "12px" }} />
               {"내 땅 올리기"}
             </MenuItem>
-          </Modal>
-          <AddIcon
+          }
+        </>
+      </Modal>
+      {
+        currentFilter === null &&
+        <ThemeProvider theme={MainTheme}>
+          <Fab size="medium" color={isFABModal ? "info.dark" as "info" : "primary"} aria-label="add"
+            onClick={() => { setIsFABModal(!isFABModal) }}
             sx={{
-              transform: `rotate(${isModal ? 45 : 0}deg)`,
+              position: "absolute",
+              bottom: "64px",
+              right: "16px",
               transition: {
-                transform: "1.2s linear"
-              }
-            }} />
-        </Fab>
-      </ThemeProvider>
+                background: "1.2s"
+              },
+              zIndex: 1301
+            }}>
+            <AddIcon
+              sx={{
+                transform: `rotate(${isFABModal ? 45 : 0}deg)`,
+                transition: {
+                  transform: "1.2s linear"
+                }
+              }} />
+          </Fab>
+        </ThemeProvider>
+      }
       <TwoRowAppBar>
         <>
           <IconButton
@@ -137,27 +157,29 @@ export default function Home() {
           </div>
         </>
         <>
-          {
-            ["유형", "면적", "위치", "가격"].map((searchOption, idx) => {
-              return (
-                <SearchOptionButton
-                  key={idx}
-                  title={searchOption}
-                />
-              );
-            })
-          }
+          <HorizontalScrollableContentContainer style={{ padding: "16px 0 11px 0" }}>
+            {
+              searchOptions.map((searchOption, idx) => {
+                return (
+                  <SearchOptionButton
+                    key={idx}
+                    title={SearchOption_ko[searchOption]}
+                    onClick={() => { setCurrentFilter(searchOption) }}
+                  />
+                );
+              })
+            }
+          </HorizontalScrollableContentContainer>
           <div
-            style={{ marginLeft: "auto", marginRight: "8px", display: "flex", alignItems: "center" }}
+            style={{ marginLeft: "auto", display: "flex", alignItems: "center" }}
             onClick={(e) => { setSortAnchorElement(sortAnchorElement === null ? e.currentTarget : null) }}
           >
             <ImportExportSharpIcon />
             <div style={{ fontWeight: "500", fontSize: "12px", whiteSpace: "nowrap" }}>
-              {filterOptions.sort}
+              {SortOption_ko[filterOptions.sort]}
             </div>
             <Menu
               open={sortAnchorElement !== null}
-              // onClose={() => {setSortAnchorElement(null)}}
               anchorEl={sortAnchorElement}>
               {
                 sortOptions.map((option, idx) => {
@@ -166,10 +188,9 @@ export default function Home() {
                       key={idx} value={option}
                       onClick={() => {
                         setFilterOptions((prev) => prev = { ...filterOptions, sort: option });
-                        setSortAnchorElement(null);
                       }}
                     >
-                      {option}
+                      {SortOption_ko[option]}
                     </MenuItem>
                   );
                 })
