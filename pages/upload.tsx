@@ -12,7 +12,7 @@ import FormControl from '@mui/material/FormControl';
 import ListItemText from '@mui/material/ListItemText';
 import Select from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
-import { Dayjs } from 'dayjs';
+
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -30,9 +30,6 @@ const GroundCategories: GroundCategory[] = ['spare', 'weekly', 'rooftop', 'schoo
 const GroundConvenients: GroundConvenient[] = ['toilet', 'convenient', 'water_supply', 'parking_lot', 'CCTV', 'equipment'
   , 'green_house', 'soil', 'fertilizer', 'near_river', 'excavator', 'workwear', 'cushion', 'thermometer'
   , 'shower_room', 'storage', 'scarecrow'];
-
-const handleSelectChange = (index: number, target: Element) => {
-};
 
 const getSplicedArray = (arr: any[], start: number, deleteCount?: number | undefined) => {
   let result = arr;
@@ -78,7 +75,6 @@ export default function Upload() {
 
   return (
     <ThemeProvider theme={MainTheme}>
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
       <VerticalScrollable
         style={{ padding: "0 24px 0 24px", alignItems: "normal" }}
       >
@@ -144,7 +140,7 @@ export default function Upload() {
         <div style={{ paddingTop: "30px" }}>{"카테고리 선택"}</div>
         <HorizontalContentContainer style={{ width: "calc(100vw - 48px)", paddingTop: "20px", flexWrap: "wrap" }}>
           {
-            GroundCategories.map((option, idx) => {
+            GroundCategories.map((option: GroundCategory, idx: number) => {
               return (
                 <Button
                   key={idx}
