@@ -14,7 +14,7 @@ export const colors = {
   error: "#FF0000"
 }
 
-export const theme = createTheme({
+export const MainTheme = createTheme({
   palette: {
     primary: {
       main: colors.primary,
@@ -33,6 +33,31 @@ export const theme = createTheme({
     },
     success: {
       main: colors.onSuccess,
+    },
+  },
+});
+
+export const ButtonTheme = createTheme({
+  palette: {
+    primary: {
+      main: colors.surface,
+    },
+    secondary: {
+      main: colors.onSurface,
+    },
+  },
+});
+
+export const AppBarTheme = createTheme({
+  palette: {
+    primary: {
+      main: colors.background,
+    },
+    secondary: {
+      main: colors.onBackground,
+    },
+    common: {
+      white: "#FFFFFF"
     },
   },
 });

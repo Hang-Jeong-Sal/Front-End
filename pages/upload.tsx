@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { ChangeEvent } from 'react';
 
 import { ThemeProvider } from '@mui/material/styles';
-import { theme } from '../lib/color';
+import { MainTheme } from '../lib/color';
 import PhotoCameraOutlinedIcon from '@mui/icons-material/PhotoCameraOutlined';
 import TextField from "@mui/material/TextField";
 import InputAdornment from '@mui/material/InputAdornment';
@@ -77,7 +77,7 @@ export default function Upload() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={MainTheme}>
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
       <VerticalScrollable
         style={{ padding: "0 24px 0 24px", alignItems: "normal" }}
