@@ -11,7 +11,8 @@ export const colors = {
   onBackground: "rgba(0, 0, 0, 0)",
   onSuccess: "#005452",
   onSystem: "rgba(249, 249, 249, 0.94)",
-  error: "#FF0000"
+  error: "#FF0000",
+  onBlur: "#CCCCCC",
 }
 
 export const MainTheme = createTheme({
@@ -29,11 +30,15 @@ export const MainTheme = createTheme({
       main: colors.error,
     },
     info: {
-      main: colors.onSystem,
+      main: colors.onBackground,
+      contrastText: colors.onBlur,
+      light: colors.onBackground,
+      dark: colors.background
     },
     success: {
       main: colors.onSuccess,
     },
+
   },
 });
 

@@ -1,7 +1,7 @@
 import { ReactNode, CSSProperties } from 'react';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import { AppBarTheme, colors } from '../../lib/color';
+import { AppBarTheme, MainTheme } from '../../lib/color';
 
 import { ServiceFeature } from '../../lib/type/Service';
 
@@ -33,13 +33,33 @@ export const HorizontalContentContainer = styled(HorizontalContainer)`
   height: fit-content;
 `;
 
+export const HorizontalScrollableContentContainer = styled(HorizontalContentContainer)`
+  overflow-y: hidden;
+  overflow-x: auto;
+  &::-webkit-scrollbar {
+    height: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    width: 20%;
+    background: ${MainTheme.palette.info.contrastText};
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background: ${MainTheme.palette.info.main};
+  }
+`;
+
 export const VerticalContainer = styled.div`
   width: 100vw;
   height: 100vh;
-
+  
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+export const VerticalContentContainer = styled(VerticalContainer)`
+    width: fit-content;
 `;
 
 export const VerticalScrollable = styled(VerticalContainer)`
@@ -50,11 +70,11 @@ export const VerticalScrollable = styled(VerticalContainer)`
   }
   &::-webkit-scrollbar-thumb {
     height: 20%;
-    background: #005452;
+    background: ${MainTheme.palette.primary.main};
     border-radius: 10px;
   }
   &::-webkit-scrollbar-track {
-    background: rgba(0, 84, 82, 0.6);
+    background: ${MainTheme.palette.secondary.main};
   }
 `;
 
@@ -80,16 +100,13 @@ export const NavigationBar = ({ currentFeature, style }: { currentFeature: Servi
   };
 
   const router = useRouter();
-  function clickHandler(id: number) {
-    router.push(`/ground/${id}`);
-  }
 
   return (
     <div style={{
       ...style,
       width: "100vw",
       height: "48px",
-      backgroundColor: colors.onSystem,
+      backgroundColor: MainTheme.palette.info.main,
       boxShadow: "0px -0.5px 0px rgba(0, 0, 0, 0.3)",
       backdropFilter: "blur(10px)",
       display: "flex",
