@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Back from '../../components/common/Back';
 import Img from '../../components/common/Img';
 import Map from '../../components/common/Map';
-import Menu from '../../components/common/Menu';
+import { Menu } from '../../components/common/Menu';
 import OverlayController from '../../components/common/Overlay';
 
 import {
