@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import Back from '../../components/common/Back';
 import Img from '../../components/common/Img';
-import Map from '../../components/common/Map';
+import KakaoMap from '../../components/common/Map';
 import { Menu } from '../../components/common/Menu';
 import OverlayController from '../../components/common/Overlay';
 
@@ -81,7 +81,7 @@ export default function Ground() {
           좋아요. 관심있는 분들은 약속잡기전에 채팅 먼저 부탁드려요 ^^
         </IntroText>
       </Introduction>
-      <Map longitude={126.570667} latitude={33.450701}></Map>
+      <KakaoMap className={"map"} longitude={126.570667} latitude={33.450701}></KakaoMap>
       <DetailNav>
         <HeartImage
           onClick={() => {
