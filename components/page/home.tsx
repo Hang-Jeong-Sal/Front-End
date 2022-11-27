@@ -5,7 +5,7 @@ import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlin
 
 import { GroundData } from '../../lib/interface/GroundData';
 
-export const GroundItem = ({ props }: { props: GroundData }) => {
+export const GroundItem = ({ data }: { data: GroundData }) => {
   const router = useRouter();
   function clickHandler(id: number) {
     router.push(`/ground/${id}`);
@@ -13,7 +13,7 @@ export const GroundItem = ({ props }: { props: GroundData }) => {
   return (
     <div
       onClick={() => {
-        clickHandler(props.id);
+        clickHandler(data.id);
       }}
       style={{
         width: '100vw',
@@ -25,7 +25,7 @@ export const GroundItem = ({ props }: { props: GroundData }) => {
         alignItems: 'center',
       }}
     >
-      <Image src={props.image} alt={'사진'} width={75} height={75} />
+      <Image src={data.imgUrl[0]} alt={'사진'} width={75} height={75} />
 
       <div
         style={{
@@ -37,16 +37,16 @@ export const GroundItem = ({ props }: { props: GroundData }) => {
         }}
       >
         <div style={{ fontWeight: '500', fontSize: '16px' }}>
-          {props.name}
+          {data.title}
         </div>
         <div
           style={{ fontWeight: '600', fontSize: '10px', color: '#878B93' }}
         >
-          {props.address}
+          {data.address}
         </div>
         <div
           style={{ fontWeight: '600', fontSize: '10px', color: '#878B93' }}
-        >{`${props.price}원`}</div>
+        >{`${data.price}원`}</div>
       </div>
 
       <div
@@ -59,7 +59,7 @@ export const GroundItem = ({ props }: { props: GroundData }) => {
       >
         <FavoriteBorderOutlinedIcon style={{ fontSize: '12px', marginRight: '4px'}}/>
         <div style={{ fontSize: '12px', fontWeight: '200' }}>
-          {props.like_count}
+          {data.likeCount}
         </div>
       </div>
     </div>

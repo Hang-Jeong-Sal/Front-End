@@ -22,9 +22,9 @@ export const ItemMaker = ({ props }: { props: GroundData }) => {
         }}
       >
         <ImageAndText>
-          <Img src={props.image} width={100} height={100} />
+          <Img src={props.imgUrl[0]} width={100} height={100} />
           <TextContainer>
-            <Title>{props.name}</Title>
+            <Title>{props.title}</Title>
             <div>
               <div>{props.address}</div>
               <div>{props.price}원</div>
@@ -33,7 +33,7 @@ export const ItemMaker = ({ props }: { props: GroundData }) => {
         </ImageAndText>
         <HeartAndInfo>
           <Info>
-            35m<sup>2</sup> | ♡{props.like_count}
+            35m<sup>2</sup> | ♡{props.likeCount}
           </Info>
         </HeartAndInfo>
       </Container>
