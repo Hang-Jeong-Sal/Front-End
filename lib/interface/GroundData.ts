@@ -4,13 +4,19 @@ import { Dayjs } from 'dayjs';
 import dayjs from 'dayjs';
 
 export interface GroundData {
-  name: string;
-  address: string;
-  price: number;
-  like_count: number;
-  image: string;
-  id: number;
+  id: number
+  title: string
+  address: string
+  imgUrl: string[]
+  price: number
+  address_1: string
+  address_2: string
+  address_3: string
+  area: number
+  likeCount: number
+  categories: GroundCategory[]
 }
+
 export interface GroundDetailData {
   userId: number,
   name: string,
