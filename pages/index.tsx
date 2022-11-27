@@ -47,7 +47,8 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    axios.get("/data/ground.json")
+    axios.get("http://3.35.41.141:8080/api/grounds?dong=%EC%8B%A0%EB%8C%80%EB%B0%A9%EB%8F%99", 
+      {withCredentials: false})
       .then((res) => setGroundData(res.data as GroundData[]));
   }, []);
 
@@ -202,7 +203,7 @@ export default function Home() {
       <VerticalScrollable style={{ height: `calc(100vh - ${112 + 48}px)` }}>
         {
           groundData?.map((ground, idx: number) => {
-            return <GroundItem props={ground} key={idx} />;
+            return <GroundItem data={ground} key={idx} />;
           })
         }
       </VerticalScrollable >
