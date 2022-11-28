@@ -66,3 +66,18 @@ export const AppBarTheme = createTheme({
     },
   },
 });
+
+// https://developers.kakao.com/docs/latest/ko/kakaologin/design-guide
+export const KakaoTheme = createTheme({
+  palette: {
+    primary: {
+      main: "#FEE500"
+    },
+    secondary: {
+      main: "#000000"
+    },
+    info :{
+      main: "rgba(0, 0, 0, 0.85)"
+    }
+  }
+});

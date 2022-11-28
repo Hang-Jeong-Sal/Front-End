@@ -81,8 +81,6 @@ const IntroText = styled.div`
 `;
 const DetailNav = styled.div`
   display: flex;
-  max-width: 550px;
-  min-width: 100px;
   width: 100%;
   align-items: center;
   position: fixed;
