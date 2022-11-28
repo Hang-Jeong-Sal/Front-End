@@ -31,6 +31,7 @@ export interface GroundDetailData {
     x: number;
     y: number;
   };
+  create_at: string;
   // category?: string[];
   // convenient?: GroundConvenient[];
 }
