@@ -27,79 +27,89 @@ import {
 } from '../../components/page/ground/[id]';
 import Modal from '../../components/page/ground/Modal';
 import { GreenButton, WhiteButton } from '../../components/common/CommonStyler';
+import { useQuery } from 'react-query';
+import { getGround } from '../../lib/api/getGround';
+import { GroundDetailData } from '../../lib/interface/GroundData';
 
 export default function Ground() {
-  const dataTag = ['주소', '면적', '가격', '대여기간'];
-  const tempData = [
-    '서울특별시 동작구 상도동',
-    '123',
-    '5000',
-    '2022.11.15 ~ 2023.05.15',
-  ];
+  const { data } = useQuery<GroundDetailData>(['detail'], getGround);
   const [isModal, setModal] = useState(false);
   const [clickedHeart, setClickedHeart] = useState(false);
-  return (
-    <>
-      <AnimatePresence>
-        {isModal ? (
-          <>
-            <OverlayController setState={setModal}></OverlayController>
-            <Modal />
-          </>
-        ) : null}
-      </AnimatePresence>
-      <Header>
-        <Back />
-        <Menu setState={setModal} />
-      </Header>
-      <ImageSection>
-        <Img src={'/detailPhoto.svg'} width={550} height={240} />
-      </ImageSection>
-      <ProfileSection>
-        <Img src="/profile.svg" width={45} height={45} />
-        <div>상도동 불주먹</div>
-      </ProfileSection>
-      <MainSection>
-        <MainTitle>민지네 텃밭</MainTitle>
-        <Line>
-          <MainCategory>주말텃밭</MainCategory>
-          <MainTime>6시간 전</MainTime>
-        </Line>
-        {[0, 1, 2, 3].map((index) => {
-          return (
-            <Line key={index}>
-              <DataTag>{dataTag[index]}</DataTag>
-              <Data>{tempData[index]}</Data>
-            </Line>
-          );
-        })}
-      </MainSection>
-      <Introduction>
-        <IntroTitle>텃밭소개</IntroTitle>
-        <IntroText>
-          동작구 상도동에 위치한 작은 텃밭입니다~ 주말마다 오셔서 가꾸기 주시기
-          좋아요. 관심있는 분들은 약속잡기전에 채팅 먼저 부탁드려요 ^^
-        </IntroText>
-      </Introduction>
-      <KakaoMap className={"map"} longitude={126.570667} latitude={33.450701}></KakaoMap>
-      <DetailNav>
-        <HeartImage
-          onClick={() => {
-            setClickedHeart((prev) => !prev);
-          }}
-        >
-          <Image
-            src={clickedHeart ? '/clickedHeart.svg' : '/Heart.svg'}
-            width={30}
-            height={30}
-            alt="이미지"
-          ></Image>
-        </HeartImage>
-        <ButtonContainer>
-          <WhiteButton>채팅하기</WhiteButton>
-          <GreenButton>구매완료</GreenButton>
-        </ButtonContainer>
-      </DetailNav>
-    </>
-  );
+  console.log(data);
+  if (data)
+    return (
+      <>
+        <AnimatePresence>
+          {isModal ? (
+            <>
+              <OverlayController setState={setModal}></OverlayController>
+              <Modal />
+            </>
+          ) : null}
+        </AnimatePresence>
+        <Header>
+          <Back />
+          <Menu setState={setModal} />
+        </Header>
+        <ImageSection>
+          <Img src={'/detailPhoto.svg'} width={550} height={240} />
+        </ImageSection>
+        <ProfileSection>
+          <Img src="/profile.svg" width={45} height={45} />
+          <div>상도동 불주먹</div>
+        </ProfileSection>
+        <MainSection>
+          <MainTitle>민지네 텃밭</MainTitle>
+          <Line>
+            <MainCategory>주말텃밭</MainCategory>
+            <MainTime>6시간 전</MainTime>
+          </Line>
+          <Line>
+            <DataTag>주소</DataTag>
+            <Data>{data?.address}</Data>
+          </Line>
+          <Line>
+            <DataTag>면적</DataTag>
+            <Data>{data?.area}</Data>
+          </Line>
+          <Line>
+            <DataTag>가격</DataTag>
+            <Data>{data?.price}</Data>
+          </Line>
+          <Line>
+            <DataTag>대여기간</DataTag>
+            <Data>
+              {data?.renderStartDate} ~ {data?.renderFinishDate}
+            </Data>
+          </Line>
+        </MainSection>
+        <Introduction>
+          <IntroTitle>텃밭소개</IntroTitle>
+          <IntroText>{data?.introduction}</IntroText>
+        </Introduction>
+        <KakaoMap
+          className={'map'}
+          longitude={data!.location.x}
+          latitude={data!.location.y}
+        ></KakaoMap>
+        <DetailNav>
+          <HeartImage
+            onClick={() => {
+              setClickedHeart((prev) => !prev);
+            }}
+          >
+            <Image
+              src={clickedHeart ? '/clickedHeart.svg' : '/Heart.svg'}
+              width={30}
+              height={30}
+              alt="이미지"
+            ></Image>
+          </HeartImage>
+          <ButtonContainer>
+            <WhiteButton>채팅하기</WhiteButton>
+            <GreenButton>구매완료</GreenButton>
+          </ButtonContainer>
+        </DetailNav>
+      </>
+    );
 }
