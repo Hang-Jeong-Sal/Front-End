@@ -12,15 +12,17 @@ import {
 } from './ItemStyle';
 import { useRouter } from 'next/router';
 
-export const LikeItems = ({ props }: { props: LikeItemData }) => {
-  const [like, setLike] = useState(true);
+export const LikeItems = ({
+  props,
+  notLike,
+}: {
+  props: LikeItemData;
+  notLike: (singgleData: LikeItemData) => void;
+}) => {
   const router = useRouter();
   function routerHandler(id: number) {
     router.push(`/ground/${id}`);
   }
-  const clickHandler = () => {
-    setLike((prev) => !prev);
-  };
   return (
     <>
       <Container>
@@ -39,12 +41,12 @@ export const LikeItems = ({ props }: { props: LikeItemData }) => {
           </TextContainer>
         </ImageAndText>
         <HeartAndInfo>
-          <Heart onClick={clickHandler}>
-            <Img
-              src={like ? '/clickedHeart.svg' : '/Heart.svg'}
-              width={35}
-              height={35}
-            />
+          <Heart
+            onClick={() => {
+              notLike(props);
+            }}
+          >
+            <Img src={'/clickedHeart.svg'} width={35} height={35} />
           </Heart>
           <Info>
             35m<sup>2</sup> | ♡{props.likeCount}
