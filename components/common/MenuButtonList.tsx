@@ -1,4 +1,4 @@
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler, CSSProperties } from 'react';
 import { useRouter } from 'next/router';
 
 import Button from '@mui/material/Button';
@@ -33,7 +33,7 @@ export function MenuButtonList({
 }
 
 export const SearchOptionButton = (
-  { title, onClick } : { title: string, onClick?: MouseEventHandler<HTMLButtonElement> }
+  { title, style, onClick } : { title: string, style?: CSSProperties, onClick?: MouseEventHandler<HTMLButtonElement> }
   ) => {
   return (
     <ThemeProvider theme={ButtonTheme}>
@@ -43,9 +43,9 @@ export const SearchOptionButton = (
         sx={{
           width: "15vw",
           height: "3vh",
-          marginRight: "10px",
           boxShadow: "0px 1px 4px #DADADA",
-          borderRadius: "20px"
+          borderRadius: "20px",
+          ...style
         }}
         onClick={onClick}
       >
