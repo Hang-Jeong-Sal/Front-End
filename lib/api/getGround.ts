@@ -1,4 +1,3 @@
-import { stringify } from 'querystring';
 import { GroundDetailData } from '../interface/GroundData';
 
 export async function getGround(): Promise<GroundDetailData> {
@@ -19,6 +18,7 @@ export async function getGround(): Promise<GroundDetailData> {
         x: 126.570667,
         y: 33.450701,
       },
+      create_at: '2022-11-24T19:38:39.909183',
     } as GroundDetailData);
   });
 }
