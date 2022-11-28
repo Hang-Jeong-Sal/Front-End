@@ -38,6 +38,13 @@ export default function Ground() {
   const [isModal, setModal] = useState(false);
   const [clickedHeart, setClickedHeart] = useState(false);
   const router = useRouter();
+
+  const TagAndData = [
+    ['주소', data?.address],
+    ['면적', data?.area],
+    ['가격', data?.price],
+    ['대여기간', `${data?.renderStartDate} ~ ${data?.renderFinishDate}`],
+  ];
   function getDisplay() {
     const yearDiff = getDiff('year');
     const monthDiff = getDiff('month');
@@ -62,7 +69,7 @@ export default function Ground() {
         <AnimatePresence>
           {isModal ? (
             <>
-              <OverlayController setState={setModal}></OverlayController>
+              <OverlayController setState={setModal} />
               <Modal />
             </>
           ) : null}
@@ -80,32 +87,20 @@ export default function Ground() {
           }}
         >
           <Img src="/profile.svg" width={45} height={45} />
-          <div>상도동 불주먹</div>
+          <div>{data.name}</div>
         </ProfileSection>
         <MainSection>
-          <MainTitle>민지네 텃밭</MainTitle>
+          <MainTitle>{data.name}</MainTitle>
           <Line>
             <MainCategory>주말텃밭</MainCategory>
             <MainTime>{getDisplay()}</MainTime>
           </Line>
-          <Line>
-            <DataTag>주소</DataTag>
-            <Data>{data?.address}</Data>
-          </Line>
-          <Line>
-            <DataTag>면적</DataTag>
-            <Data>{data?.area}</Data>
-          </Line>
-          <Line>
-            <DataTag>가격</DataTag>
-            <Data>{data?.price}</Data>
-          </Line>
-          <Line>
-            <DataTag>대여기간</DataTag>
-            <Data>
-              {data?.renderStartDate} ~ {data?.renderFinishDate}
-            </Data>
-          </Line>
+          {TagAndData.map((oneLine, idx) => (
+            <Line key={idx}>
+              <DataTag>{oneLine[0]}</DataTag>
+              <Data>{oneLine[1]}</Data>
+            </Line>
+          ))}
         </MainSection>
         <Introduction>
           <IntroTitle>텃밭소개</IntroTitle>
@@ -115,7 +110,7 @@ export default function Ground() {
           className={'map'}
           longitude={data!.location.x}
           latitude={data!.location.y}
-        ></KakaoMap>
+        />
         <DetailNav>
           <HeartImage
             onClick={() => {
@@ -127,7 +122,7 @@ export default function Ground() {
               width={30}
               height={30}
               alt="이미지"
-            ></Image>
+            />
           </HeartImage>
           <ButtonContainer>
             <WhiteButton>채팅하기</WhiteButton>
