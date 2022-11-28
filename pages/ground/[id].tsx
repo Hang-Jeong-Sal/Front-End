@@ -31,11 +31,13 @@ import { useQuery } from 'react-query';
 import { getGround } from '../../lib/api/getGround';
 import { GroundDetailData } from '../../lib/interface/GroundData';
 import dayjs from 'dayjs';
+import { useRouter } from 'next/router';
 
 export default function Ground() {
   const { data } = useQuery<GroundDetailData>(['detail'], getGround);
   const [isModal, setModal] = useState(false);
   const [clickedHeart, setClickedHeart] = useState(false);
+  const router = useRouter();
   function getDisplay() {
     const yearDiff = getDiff('year');
     const monthDiff = getDiff('month');
@@ -53,7 +55,7 @@ export default function Ground() {
     const when = dayjs(data?.create_at);
     return today.subtract(when.get(t), t).get(t);
   }
-  getDisplay();
+
   if (data)
     return (
       <>
@@ -72,7 +74,11 @@ export default function Ground() {
         <ImageSection>
           <Img src={data!.image![0]} width={550} height={240} />
         </ImageSection>
-        <ProfileSection>
+        <ProfileSection
+          onClick={() => {
+            router.push(`/profile/${data.userId}`);
+          }}
+        >
           <Img src="/profile.svg" width={45} height={45} />
           <div>상도동 불주먹</div>
         </ProfileSection>
