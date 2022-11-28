@@ -36,23 +36,25 @@ export interface GroundDetailData {
   convenient?: GroundConvenient[];
 }
 
-export type SearchOption =
-  | 'category'
-  | 'area'
-  | 'radius'
-  | 'price'
-  | 'convenient'
-  | 'period'
-  | 'sort';
-export const SearchOption_ko: { [K in SearchOption]: string } = {
-  category: '유형',
-  area: '범위',
-  radius: '지역',
-  price: '가격',
-  convenient: '부대 시설',
-  period: '대여 기간',
-  sort: '정렬',
-};
+export interface GroundMarkerData {
+  area: number,
+  price: number,
+  location: {
+    x: number,
+    y: number
+  }
+}
+
+export type SearchOption = 'category' | 'area' | 'radius' | 'price' | 'convenient' | 'period' | 'sort';
+export const SearchOption_ko: {[K in SearchOption]: string} = {
+  'category': "유형",
+  'area': "범위",
+  'radius': "지역",
+  'price': "가격",
+  'convenient': "부대 시설",
+  'period': "대여 기간",
+  'sort': "정렬"
+}
 
 export type SortOption = 'ascending' | 'descending' | 'popular';
 export const SortOption_ko: { [K in SortOption]: string } = {

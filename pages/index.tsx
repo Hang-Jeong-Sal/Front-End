@@ -11,7 +11,6 @@ import Fab from '@mui/material/Fab';
 import IconButton from '@mui/material/IconButton';
 import { Menu } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
@@ -133,9 +132,7 @@ export default function Home() {
             onClick={() => { }}
             color="inherit"
           >
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              {"상도동"}
-            </Typography>
+            <div style={{marginLeft: "16px", fontWeight: "600", fontSize: "18px"}}>{"상도동"}</div>
             <ExpandMoreIcon />
           </IconButton>
           <div style={{ marginLeft: "auto" }}>
@@ -165,6 +162,7 @@ export default function Home() {
                   <SearchOptionButton
                     key={idx}
                     title={SearchOption_ko[searchOption]}
+                    style={{margin: "0 6px 0 6px"}}
                     onClick={() => { setCurrentFilter(searchOption) }}
                   />
                 );

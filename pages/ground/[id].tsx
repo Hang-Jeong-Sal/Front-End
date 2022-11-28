@@ -106,7 +106,6 @@ export default function Ground() {
           <IntroText>{data?.introduction}</IntroText>
         </Introduction>
         <KakaoMap
-          className={'map'}
           longitude={data!.location.x}
           latitude={data!.location.y}
         ></KakaoMap>
