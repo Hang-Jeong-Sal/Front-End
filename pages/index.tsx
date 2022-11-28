@@ -1,184 +1,212 @@
 import Head from 'next/head';
-import Image from 'next/image';
-import { useState, useEffect } from "react";
+import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import MaterialIcon from '@material/react-material-icon';
-import TopAppBar, {
-  TopAppBarFixedAdjust,
-  TopAppBarIcon,
-  TopAppBarRow,
-  TopAppBarSection,
-  TopAppBarTitle,
-} from '@material/react-top-app-bar';
-import Button from "@material/react-button";
-import Menu, { MenuList, MenuListItem, MenuListItemText } from '@material/react-menu';
+import { ThemeProvider } from '@mui/material/styles';
+import { MainTheme, colors } from '../lib/color';
 
-import { VerticalContainer, VerticalScrollable } from "../components/common/Interface";
+import Fab from '@mui/material/Fab';
+
+import IconButton from '@mui/material/IconButton';
+import { Menu } from '@mui/material';
+import MenuItem from '@mui/material/MenuItem';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+
+import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
+import MenuIcon from '@mui/icons-material/Menu';
+import SearchIcon from '@mui/icons-material/Search';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ImportExportSharpIcon from '@mui/icons-material/ImportExportSharp';
+import AddIcon from '@mui/icons-material/Add';
+import StorefrontOutlinedIcon from '@mui/icons-material/StorefrontOutlined';
+
+import {
+  GroundData, GroundSearchOption,
+  SearchOption, SearchOption_ko, DefaultGroundSearchOption,
+  SortOption, SortOption_ko
+} from "../lib/interface/GroundData";
+
+import { VerticalScrollable, NavigationBar, TwoRowAppBar, HorizontalScrollableContentContainer } from "../components/common/Interface";
+import { SearchOptionButton } from "../components/common/MenuButtonList";
+import { SearchDrawer } from "../components/common/Menu";
 import { GroundItem } from "../components/page/home";
 
-type Ground = 'spare' | 'weekly' | 'rooftop' | 'school' | 'terrace';
-const groundTypes: Ground[] = ['spare', 'weekly', 'rooftop', 'school', 'terrace'];
-const groundTypeName: { [K in Ground]: string } = {
-  'spare': "자투리 텃밭",
-  'weekly': "주말 농장",
-  'rooftop': "옥상 정원",
-  'school': "스쿨팜",
-  'terrace': "베란다 텃밭"
-};
-
-export interface GroundData {
-  name : string
-  location : string
-  price : number
-  like_count : number
-  image : string 
-}
-
-const handleSelectChange = (index: number, target: Element) => {
-};
+const searchOptions: SearchOption[] = ['category', 'radius', 'area', 'price', 'convenient', 'period'];
+const sortOptions: SortOption[] = ['ascending', 'descending', 'popular'];
 
 export default function Home() {
-  const [filterOptions, setFilterOptions] = useState({
-    type: "spare",
-    square: 100,
-    location: "상도동",
-    price: 100000
-  });
-  const [sortOption, setSortOption] = useState("최신 순");
-  const [isOpen, setIsOpen] = useState(false);
-  const menuOptions = [
-    '최신 순',
-    '오래된 순',
-    '인기 많은 순'
-  ];
-
+  const [filterOptions, setFilterOptions] = useState<GroundSearchOption>(DefaultGroundSearchOption);
   const [groundData, setGroundData] = useState<GroundData[]>([]);
+  
+  const [currentFilter, setCurrentFilter] = useState<SearchOption | null>(null);
+  const [isFABModal, setIsFABModal] = useState<boolean>(false);
+  const [sortAnchorElement, setSortAnchorElement] = useState<null | HTMLElement>(null);
+
+  const router = useRouter();
 
   useEffect(() => {
     axios.get("/data/ground.json")
-    .then((res) => setGroundData(res.data as GroundData[]));
+      .then((res) => setGroundData(res.data as GroundData[]));
   }, []);
 
   return (
     <>
-      <VerticalContainer>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-        <Head>
-          <title>Welcome to My Green</title>
-          <meta name="description" content="당신 근처의 텃밭, 당텃마켓" />
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-
-        <TopAppBar
-          className='home-top-app-bar-alternate'
-          fixed={true}
-        >
-          <TopAppBarRow>
-            <TopAppBarSection
-              align='start'
-            >
-              <TopAppBarTitle
-                style={{
-                  fontFamily: "Pretendard Variable",
-                  fontWeight: "600"
-                }}
-              >상도동</TopAppBarTitle>
-            </TopAppBarSection>
-            <TopAppBarSection align='end' role='toolbar'>
-              {['search', 'menu', 'notifications'].map((iconName, idx) => {
-                return (
-                  <TopAppBarIcon actionItem tabIndex={idx} key={idx} className="material-symbols-outlined">
-                    <MaterialIcon
-                      aria-label={iconName}
-                      hasRipple
-                      icon={iconName}
-                      onClick={() => console.log(iconName)}
-                    />
-                  </TopAppBarIcon>
-                );
-              })}
-            </TopAppBarSection>
-          </TopAppBarRow>
-          <TopAppBarRow>
-            <TopAppBarSection
-              align='start'
-            >
-              {["유형", "면적", "위치", "가격"].map((filter, idx) => {
-                return (
-                  <Button
-                    className='filter-button-alternate'
-                    outlined={true}
-                    trailingIcon={
-                      <MaterialIcon
-                        className='filter-expand-button-alternate'
-                        aria-label={"expand_more"}
-                        icon={"expand_more"}
-                      />
-                    }
-                    key={idx}
-                  >
-                    {filter}
-                  </Button>
-                );
-              })}
-            </TopAppBarSection>
-            <TopAppBarSection
-              align='end'
-              onClick={(e) => {
-                setIsOpen(!isOpen);
+      <Head>
+        <title>H.O.M.I</title>
+        <meta name="description" content="동네 근처의 텃밭을 빌려보세요. HOMI" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Modal
+        open={isFABModal || currentFilter !== null}
+      >
+        <>
+          {
+            currentFilter !== null && <SearchDrawer
+              options={searchOptions}
+              currentOption={currentFilter}
+              currentFilterOptions={filterOptions}
+              onOptionClickCallback={(clickedOption) => {
+                setCurrentFilter(clickedOption);
               }}
+              onCloseCallback={(isClose) => {
+                if (isClose)
+                  setCurrentFilter(null);
+              }}
+              onChangeFilterOptionsCallback={(changedFilterOptions) => {
+                setFilterOptions(changedFilterOptions);
+                setCurrentFilter(null); 
+              }}
+            />
+          }
+          {
+            isFABModal && <MenuItem
+              sx={{
+                width: "160px",
+                height: "40px",
+                position: "absolute",
+                bottom: "116px",
+                right: "16px",
+                borderRadius: "15px",
+                backgroundColor: colors.background
+              }}
+              onClick={() => { router.push(`/upload`) }}
             >
-              <Image 
-                src="/arrows_up_down.png"
-                alt="arrows_up_down.png"
-                width={24}
-                height={24}
-              />
-              <div
-                style={{
-                  fontFamily: 'Pretendard Variable',
-                  fontWeight: '500',
-                  fontSize: '12px'
-                }}
-              >{sortOption}</div>
-              <Menu
-                open={isOpen}
-                onClose={() => {
-                  setIsOpen(false);
-                }}
-                coordinates={{x: 390, y: 56}}
-                onSelected={(index, item) => {
-                  setSortOption(item.firstChild?.textContent!);
-                }}
-              >
-                <MenuList>
-                  {menuOptions.map((option, index) => (
-                    <MenuListItem key={index}>
-                      <MenuListItemText primaryText={option} />
-                      {/* You can also use other components from list, which are documented below */}
-                    </MenuListItem>
-                  ))}
-                </MenuList>
-              </Menu>
-            </TopAppBarSection>
-          </TopAppBarRow>
-        </TopAppBar>
-        <VerticalScrollable
-          style={{
-            paddingTop: "14vh"
-          }}
-        >
+              <StorefrontOutlinedIcon style={{ marginRight: "12px" }} />
+              {"내 땅 올리기"}
+            </MenuItem>
+          }
+        </>
+      </Modal>
+      {
+        currentFilter === null &&
+        <ThemeProvider theme={MainTheme}>
+          <Fab size="medium" color={isFABModal ? "info.dark" as "info" : "primary"} aria-label="add"
+            onClick={() => { setIsFABModal(!isFABModal) }}
+            sx={{
+              position: "absolute",
+              bottom: "64px",
+              right: "16px",
+              transition: {
+                background: "1.2s"
+              },
+              zIndex: 1301
+            }}>
+            <AddIcon
+              sx={{
+                transform: `rotate(${isFABModal ? 45 : 0}deg)`,
+                transition: {
+                  transform: "1.2s linear"
+                }
+              }} />
+          </Fab>
+        </ThemeProvider>
+      }
+      <TwoRowAppBar>
+        <>
+          <IconButton
+            size="large"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            onClick={() => { }}
+            color="inherit"
+          >
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              {"상도동"}
+            </Typography>
+            <ExpandMoreIcon />
+          </IconButton>
+          <div style={{ marginLeft: "auto" }}>
             {
-              groundData?.map((ground, idx) => {
-                return(
-                  <GroundItem props={ground} key={idx} />
+              [<SearchIcon key={"search"} />, <MenuIcon key={"menu"} />, <NotificationsOutlinedIcon key={"noti"} />].map((childMenu, idx) => {
+                return (
+                  <IconButton
+                    key={idx}
+                    size="large"
+                    aria-controls="menu-appbar"
+                    aria-haspopup="true"
+                    onClick={() => { }}
+                    color="inherit"
+                  >
+                    {childMenu}
+                  </IconButton>
                 );
               })
             }
-        </VerticalScrollable>
-        <TopAppBarFixedAdjust />
-      </VerticalContainer>
+          </div>
+        </>
+        <>
+          <HorizontalScrollableContentContainer style={{ padding: "16px 0 11px 0" }}>
+            {
+              searchOptions.map((searchOption, idx) => {
+                return (
+                  <SearchOptionButton
+                    key={idx}
+                    title={SearchOption_ko[searchOption]}
+                    onClick={() => { setCurrentFilter(searchOption) }}
+                  />
+                );
+              })
+            }
+          </HorizontalScrollableContentContainer>
+          <div
+            style={{ marginLeft: "auto", display: "flex", alignItems: "center" }}
+            onClick={(e) => { setSortAnchorElement(sortAnchorElement === null ? e.currentTarget : null) }}
+          >
+            <ImportExportSharpIcon />
+            <div style={{ fontWeight: "500", fontSize: "12px", whiteSpace: "nowrap" }}>
+              {SortOption_ko[filterOptions.sort]}
+            </div>
+            <Menu
+              open={sortAnchorElement !== null}
+              anchorEl={sortAnchorElement}>
+              {
+                sortOptions.map((option, idx) => {
+                  return (
+                    <MenuItem
+                      key={idx} value={option}
+                      onClick={() => {
+                        setFilterOptions((prev) => prev = { ...filterOptions, sort: option });
+                      }}
+                    >
+                      {SortOption_ko[option]}
+                    </MenuItem>
+                  );
+                })
+              }
+            </Menu>
+          </div>
+        </>
+      </TwoRowAppBar>
+      <VerticalScrollable style={{ height: `calc(100vh - ${112 + 48}px)` }}>
+        {
+          groundData?.map((ground, idx: number) => {
+            return <GroundItem props={ground} key={idx} />;
+          })
+        }
+      </VerticalScrollable >
+      <NavigationBar currentFeature={"home"} style={{ marginTop: "auto", position: "absolute" }} />
     </>
   );
 }

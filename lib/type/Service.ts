@@ -1,0 +1,1 @@
+export type ServiceFeature = 'home' | 'map' | 'chat' | 'mypage' | 'profile' | 'ground' | 'auth';

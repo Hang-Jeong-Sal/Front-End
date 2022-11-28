@@ -5,13 +5,9 @@ declare global {
 }
 import styled from 'styled-components';
 import { useEffect } from 'react';
+import { MapProps } from '../../lib/interface/MapProps';
 
-interface MapProps {
-  latitude: number;
-  longitude: number;
-}
-
-function Map({ latitude, longitude }: MapProps) {
+function KakaoMap({ className, latitude, longitude, containerStyle, style }: MapProps) {
   useEffect(() => {
     const mapScript = document.createElement('script');
 
@@ -22,7 +18,7 @@ function Map({ latitude, longitude }: MapProps) {
 
     const onLoadKakaoMap = () => {
       window.kakao.maps.load(() => {
-        const container = document.getElementById('map');
+        const container = document.getElementById(className);
         const options = {
           center: new window.kakao.maps.LatLng(latitude, longitude),
         };
@@ -43,8 +39,8 @@ function Map({ latitude, longitude }: MapProps) {
   }, [latitude, longitude]);
 
   return (
-    <MapStyler>
-      <MapContainer id="map" />
+    <MapStyler style={containerStyle}>
+      <MapContainer id={className} style={style} />
     </MapStyler>
   );
 }
@@ -64,4 +60,4 @@ const MapStyler = styled.div`
   height: 450px;
 `;
 
-export default Map;
+export default KakaoMap;

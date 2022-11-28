@@ -10,8 +10,8 @@ const MyProfileSection = styled.div`
   border-width: 1px;
 `;
 const InterActionSpace = styled.div`
-  margin-left: 30px;
-  margin-right: 270px;
+  flex-basis: 60%;
+  margin-left: 10px;
 `;
 const Name = styled.div`
   font-weight: 600;

@@ -1,26 +1,23 @@
-import axios from 'axios';
 import { useQuery } from 'react-query';
-import { useRecoilValue } from 'recoil';
-import { GroundData } from '..';
-import category, { ICategory } from '../../atoms/category';
-import { GroundItem } from '../../components/page/home';
+import { useRecoilState } from 'recoil';
+import { useEffect } from 'react';
 import Category from '../../components/page/mypage/Category';
 import { Header } from '../../components/page/mypage/Header';
 import { ItemMaker } from '../../components/page/mypage/ItemMaker';
-import {
-  getBorrowedTrading,
-  getBorrowedComplete,
-  getBorrowedEntire,
-} from '../../public/data/borrowed';
-function getData(cat: ICategory) {
-  if (cat == '거래중') return getBorrowedTrading().then((res) => res.data);
-  else if (cat == '거래완료')
-    return getBorrowedComplete().then((res) => res.data);
-  else return getBorrowedEntire().then((res) => res.data);
-}
+import { GroundData } from '../../lib/interface/GroundData';
+import category from '../../atoms/category';
+import { chooseAPI } from '../../lib/api/chooseApi';
+
 export default function Borrowed() {
-  const cat = useRecoilValue(category);
-  const { data } = useQuery<GroundData[]>(['likes', cat], () => getData(cat));
+  const [cate, setCate] = useRecoilState(category);
+
+  useEffect(() => {
+    setCate('전체');
+  }, []);
+
+  const { data } = useQuery<GroundData[]>(['likes', cate], () =>
+    chooseAPI(cate)
+  );
   return (
     <>
       <Header title={'빌려준 텃밭'} />

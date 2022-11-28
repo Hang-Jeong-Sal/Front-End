@@ -1,8 +1,6 @@
-import styled from 'styled-components';
-import { LikeItemData } from '../../../pages/mypage/likes';
 import Img from '../../common/Img';
 import { useState } from 'react';
-
+import { LikeItemData } from '../../../lib/interface/LikeItemData';
 import {
   Container,
   ImageAndText,
@@ -12,21 +10,30 @@ import {
   Title,
   TextContainer,
 } from './ItemStyle';
+import { useRouter } from 'next/router';
 
 export const LikeItems = ({ props }: { props: LikeItemData }) => {
   const [like, setLike] = useState(true);
+  const router = useRouter();
+  function routerHandler(id: number) {
+    router.push(`/ground/${id}`);
+  }
   const clickHandler = () => {
     setLike((prev) => !prev);
   };
   return (
     <>
       <Container>
-        <ImageAndText>
+        <ImageAndText
+          onClick={() => {
+            routerHandler(props.id);
+          }}
+        >
           <Img src={props.image} width={100} height={100} />
           <TextContainer>
             <Title>{props.name}</Title>
             <p>
-              <div>{props.location}</div>
+              <div>{props.address}</div>
               <div>{props.price}원</div>
             </p>
           </TextContainer>
