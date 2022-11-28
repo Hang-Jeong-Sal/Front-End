@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const WhiteButton = styled.button`
-  width: 150px;
+  flex-basis: 40%;
   height: 50px;
   background: #ffffff;
   border: 1px solid #d9d9d9;
@@ -14,6 +14,7 @@ const WhiteButton = styled.button`
   font-weight: 400;
 `;
 const GreenButton = styled.button`
+  flex-basis: 40%;
   background: #005452;
   border-radius: 7px;
   width: 150px;
