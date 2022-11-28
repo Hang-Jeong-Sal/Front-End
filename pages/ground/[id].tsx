@@ -30,12 +30,30 @@ import { GreenButton, WhiteButton } from '../../components/common/CommonStyler';
 import { useQuery } from 'react-query';
 import { getGround } from '../../lib/api/getGround';
 import { GroundDetailData } from '../../lib/interface/GroundData';
+import dayjs from 'dayjs';
 
 export default function Ground() {
   const { data } = useQuery<GroundDetailData>(['detail'], getGround);
   const [isModal, setModal] = useState(false);
   const [clickedHeart, setClickedHeart] = useState(false);
-  console.log(data);
+  function getDisplay() {
+    const yearDiff = getDiff('year');
+    const monthDiff = getDiff('month');
+    const dayDiff = getDiff('day');
+    const hourDiff = getDiff('hour');
+    const minuteDiff = getDiff('minute');
+    if (yearDiff) return `${yearDiff}년전`;
+    if (monthDiff) return `${monthDiff}달전`;
+    if (dayDiff) return `${dayDiff}일전`;
+    if (hourDiff) return `${hourDiff}시간전`;
+    if (minuteDiff) return `${minuteDiff}분전`;
+  }
+  function getDiff(t: 'year' | 'month' | 'day' | 'hour' | 'month' | 'minute') {
+    const today = dayjs();
+    const when = dayjs(data?.create_at);
+    return today.subtract(when.get(t), t).get(t);
+  }
+  getDisplay();
   if (data)
     return (
       <>
@@ -62,7 +80,7 @@ export default function Ground() {
           <MainTitle>민지네 텃밭</MainTitle>
           <Line>
             <MainCategory>주말텃밭</MainCategory>
-            <MainTime>6시간 전</MainTime>
+            <MainTime>{getDisplay()}</MainTime>
           </Line>
           <Line>
             <DataTag>주소</DataTag>
