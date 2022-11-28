@@ -375,12 +375,12 @@ export default function Upload() {
               <DesktopDatePicker
                 label="대여 시작 일"
                 inputFormat="YYYY/MM/DD"
-                value={userInput.period.start}
+                value={userInput.renderStartDate}
                 renderInput={(render) => <TextField {...render} />}
                 onChange={(newValue) => {
                   setUserInput({
                     ...userInput,
-                    period: { ...userInput.period, start: newValue },
+                    renderStartDate: newValue,
                   });
                 }}
               />
@@ -390,12 +390,12 @@ export default function Upload() {
               <DesktopDatePicker
                 label="대여 종료 일"
                 inputFormat="YYYY/MM/DD"
-                value={userInput.period.end}
+                value={userInput.renderFinishDate}
                 renderInput={(render) => <TextField {...render} />}
                 onChange={(newValue) => {
                   setUserInput({
                     ...userInput,
-                    period: { ...userInput.period, end: newValue },
+                    renderFinishDate: newValue,
                   });
                 }}
               />

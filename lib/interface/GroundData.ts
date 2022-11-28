@@ -24,8 +24,8 @@ export interface GroundDetailData {
   area: number;
   price: number;
   image?: string[];
-  renderStartDate?: string;
-  renderFinishDate?: string;
+  renderStartDate?: string | null;
+  renderFinishDate?: string | null;
   introduction: string;
   location: {
     x: number;
