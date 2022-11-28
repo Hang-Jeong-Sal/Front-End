@@ -92,7 +92,9 @@ export default function Ground() {
         <MainSection>
           <MainTitle>{data.name}</MainTitle>
           <Line>
-            <MainCategory>주말텃밭</MainCategory>
+            {data?.category?.map((cate, index) => (
+              <MainCategory key={cate + index}> {cate} </MainCategory>
+            ))}
             <MainTime>{getDisplay()}</MainTime>
           </Line>
           {TagAndData.map((oneLine, idx) => (
