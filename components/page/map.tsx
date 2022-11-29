@@ -5,9 +5,9 @@ import { GroundMarkerData } from "../../lib/interface/GroundData";
 // https://apis.map.kakao.com/web/sample/customOverlay2/
 export const Marker = ({ markerDatum } : { markerDatum: GroundMarkerData }) => {
     return (
-        <div>
-            <div>{markerDatum.area}</div>
-            <div>{markerDatum.price}</div>
+        <div className="w-32 h-32 bg-green">
+            <div className="text-white">{markerDatum.area}m<sup>2</sup></div>
+            <div className="text-white">{markerDatum.price}원</div>
         </div>
     );
 };

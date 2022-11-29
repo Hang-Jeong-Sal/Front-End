@@ -12,8 +12,20 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "user-images.githubusercontent.com"
+      },
+      {
+        protocol: "http",
+        hostname: "k.kakaocdn.net"
       }
     ],
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/:path*',
+        destination: `${process.env.NEXT_PUBLIC_SERVER_URL}/:path*`,
+      },
+    ];
   },
 }
 
