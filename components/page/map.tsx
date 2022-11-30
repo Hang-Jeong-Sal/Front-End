@@ -1,15 +1,17 @@
 import { KakaoKeywordSearchData } from "../../lib/type/map";
 import { HorizontalContentContainer, VerticalScrollable,  } from "../common/Interface";
 import { GroundMarkerData } from "../../lib/interface/GroundData";
+import styled from "styled-components";
 
 // https://apis.map.kakao.com/web/sample/customOverlay2/
 export const Marker = ({ markerDatum } : { markerDatum: GroundMarkerData }) => {
     return (
-        <div>
-            <div>{markerDatum.area}</div>
-            <div>{markerDatum.price}</div>
-        </div>
+        <MarkerStyle>
+            <AreaStyle>{markerDatum.area}m<sup>2</sup></AreaStyle>
+            <PriceStyle>{markerDatum.price}원</PriceStyle>
+        </MarkerStyle>
     );
+
 };
 
 export const KeywordDrawer = (
@@ -60,3 +62,40 @@ export const KeywordDrawer = (
         </div>
     );
 };
+
+const MarkerStyle = styled.div`
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: green;
+        width: 53px;
+        height: 33px;
+        border-radius: 10px;
+        &::after {
+            border-top: 13px solid green;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 23px solid transparent;
+            top: 33px;
+            content: "";
+            position: absolute;
+        }
+`;
+
+const AreaStyle = styled.div`
+    color: white;
+    font-size: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+const PriceStyle = styled.div`
+    color: white;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
