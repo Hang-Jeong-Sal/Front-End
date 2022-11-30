@@ -19,6 +19,18 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
+        
+      - name: Generate Environment Variables File for Release
+        run: |
+          echo "NEXT_PUBLIC_KAKAO_AUTH_KEY=$NEXT_PUBLIC_KAKAO_AUTH_KEY" >> .env
+          echo "NEXT_PUBLIC_KAKAOMAP_APPKEYG=$NEXT_PUBLIC_KAKAOMAP_APPKEY" >> .env
+          echo "NEXT_PUBLIC_AWS_COGNITO_POOL_ID=$NEXT_PUBLIC_AWS_COGNITO_POOL_ID" >> .env
+          echo "NEXT_PUBLIC_SERVER_URL=$NEXT_PUBLIC_SERVER_URL" >> .env
+        env:
+          NEXT_PUBLIC_KAKAO_AUTH_KEY: ${{ secrets.NEXT_PUBLIC_KAKAO_AUTH_KEY }}
+          NEXT_PUBLIC_KAKAOMAP_APPKEY: ${{ secrets.NEXT_PUBLIC_KAKAOMAP_APPKEY }}
+          NEXT_PUBLIC_AWS_COGNITO_POOL_ID: ${{ secrets.NEXT_PUBLIC_AWS_COGNITO_POOL_ID }}
+          NEXT_PUBLIC_SERVER_URL: ${{ secrets.NEXT_PUBLIC_SERVER_URL }}
 
       - name: Install dependencies
         run: yarn install
