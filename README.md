@@ -22,6 +22,7 @@
 |                                     |         | 판매 상품                   |
 |                                     |         | 지도 페이지                 |
 |                                     |         | 로그인 페이지               |
+| [jiwon](https://github.com/Jiwon-Jeong99)| Develop | 지도 페이지 - 마커 |
 
 ## 의제
 
